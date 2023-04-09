@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "../components/Header";
-import "../asset/scss/pages/_home.scss";
+import "../assets/scss/pages/_home.scss";
 import { Search } from "lucide-react";
-import imgConcert from "../asset/images/concert.png";
-import imgEvent from "../asset/images/hobbie.png";
+import imgConcert from "../assets/images/concert.png";
+import imgEvent from "../assets/images/hobbie.png";
 
 const Home = () => {
   return (
@@ -21,7 +21,7 @@ const Home = () => {
           </div>
           <div className="events">
             <h2>Évènement</h2>
-            <img src={imgEvent} alt="" />   
+            <img src={imgEvent} alt="" />
           </div>
           <div className="events">
             <h2>Évènement</h2>

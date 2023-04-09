@@ -1,6 +1,6 @@
 import React from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
-import "../../asset/scss/pages/_authentication.scss";
+import "../../assets/scss/pages/_authentication.scss";
 
 const Login = () => {
   function handleFormSubmit(values) {

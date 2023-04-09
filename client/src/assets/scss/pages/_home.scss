@@ -1,0 +1,37 @@
+@import "../index.scss";
+
+.home {
+    h2 {
+        font-family: PPEiko;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    .searchBar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        svg {
+            left: 16px;
+            position: absolute;
+        }
+
+        input {
+            width: 100%;
+            padding: 0 16px 0 56px;
+            min-height: 48px;
+            border: 1px solid $Gray300;
+            border-radius: 8px;
+        }
+    }
+
+    .events-box {
+        img {
+            width: 200px;
+            border-radius: 8px;
+        }
+    }
+}

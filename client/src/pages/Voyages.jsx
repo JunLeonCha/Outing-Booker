@@ -1,6 +1,6 @@
 import React from "react";
-import imgTest from "../asset/images/nature.png";
-import "../asset/scss/pages/_wanderlists.scss";
+import imgTest from "../assets/images/nature.png";
+import "../assets/scss/pages/_wanderlists.scss";
 import Header from "../components/Header";
 
 const Voyages = () => {

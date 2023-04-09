@@ -1,0 +1,35 @@
+@import url("../_index.scss");
+
+.favoris,
+.travels {
+    h2 {
+        font-family: PPEiko;
+    }
+
+    .onglet {
+        width: 100%;
+        justify-content: space-evenly;
+        display: flex;
+
+        div {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid;
+        }
+    }
+
+    .feeds {
+        img {
+            width: 100%;
+            height: 104px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .event {
+            p {
+                font-family: HelveticaFont;
+            }
+        }
+    }
+}
