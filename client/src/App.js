@@ -6,21 +6,32 @@ import Login from "./pages/authentification/Login";
 import Register from "./pages/authentification/Signup";
 import Favoris from "./pages/Favoris";
 import Voyages from "./pages/Voyages";
+import Account from "./pages/Account";
+import ShopingCard from "./pages/ShopingCard";
+import EventView from "./pages/EventView";
 
 function App() {
   // const title = window.location.pathname.split('/')
+  const routes = [
+    { path: "/", element: <Home /> },
+    { path: "/Accueil", element: <Home /> },
+    { path: "/Favoris", element: <Favoris /> },
+    { path: "/Voyages", element: <Voyages /> },
+    { path: "/Evenements", element: <EventView /> },
+    { path: "/Connexion", element: <Login /> },
+    { path: "/Inscription", element: <Register /> },
+    { path: "/Compte", element: <Account /> },
+    { path: "/Panier", element: <ShopingCard /> },
+    { path: "/*", element: <ERROR_404 /> },
+  ];
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Accueil" element={<Home />} />
-          <Route path="/Favoris" element={<Favoris />} />
-          <Route path="/Voyages" element={<Voyages />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/*" element={<ERROR_404 />} />
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
         </Routes>
         <NavBar />
       </BrowserRouter>

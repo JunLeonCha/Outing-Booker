@@ -1,7 +1,10 @@
-@import url("../_index.scss");
+@import "../_index.scss";
 
+
+//css pour favoris et voyages
 .favoris,
-.travels {
+.travels,
+.shop-card {
     h2 {
         font-family: PPEiko;
     }
@@ -17,19 +20,19 @@
             border-bottom: 1px solid;
         }
     }
+}
 
-    .feeds {
-        img {
-            width: 100%;
-            height: 104px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
+.feeds {
+    img {
+        width: 100%;
+        height: 104px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
 
-        .event {
-            p {
-                font-family: HelveticaFont;
-            }
+    .event {
+        p {
+            font-family: HelveticaFont;
         }
     }
 }

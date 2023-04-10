@@ -1,6 +1,7 @@
-@import "../index.scss";
+@import "../_index.scss";
 
 nav {
+    width: 100%;
     font-family: HelveticaFont;
     display: flex;
     flex-direction: row;
@@ -16,5 +17,18 @@ nav {
         align-items: center;
         text-decoration: none;
         color: black;
+
+        &.active {
+            color: $Primary500;
+        }
+
     }
+
+    .active svg path,
+    .active svg rect,
+    .active svg circle {
+        fill: $Primary500;
+
+    }
+
 }

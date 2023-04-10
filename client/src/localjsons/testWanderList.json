@@ -1,0 +1,23 @@
+[
+  {
+    "id": 12,
+    "title": "D'jal",
+    "img": "https://pierrebenitemdp.fr/wp-content/uploads/carrousel_djal-1200x361.png",
+    "date": "20 Mai 2023",
+    "prix": 37
+  },
+  {
+    "id": 13,
+    "title": "Fôret de Brocéliande",
+    "img": "https://www.broceliande-vacances.com/app/uploads/broceliande/2019/12/jardinauxmoines-819-scaled.jpg",
+    "date": "02 Juillet 2023",
+    "prix": 32
+  },
+  {
+    "id": 16,
+    "title": "Parc de Maulévrier",
+    "img": "https://www.parcsetjardins.fr/data/cache/GardenPicture/picture/main/7/2/10729.1670852136.jpg",
+    "date": "02 Juillet 2023",
+    "prix": 24
+  }
+]

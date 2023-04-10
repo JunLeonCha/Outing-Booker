@@ -1,13 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <header>
-      <h1>Page (à changer)</h1>
+      <h1>{title}</h1>
       <div className="market-place">
-        <Link to="/">
+        <NavLink to="/Lieu">
           <svg
             width="24"
             height="24"
@@ -15,19 +15,21 @@ const Header = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
+            <circle cx="12" cy="10" r="3" fill="#98A2B3" />
             <path
               opacity="0.4"
-              d="M20 4H4V20.27C4 21.555 5.352 22.39 6.501 21.816L12 19.066L17.499 21.816C18.648 22.39 20 21.554 20 20.27V4Z"
+              d="M4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10H4Z"
               fill="#98A2B3"
             />
             <path
-              d="M19.5 3C19.114 3 4.886 3 4.5 3C3.672 3 3 3.672 3 4.5C3 5.328 3.672 6 4.5 6C4.886 6 19.114 6 19.5 6C20.328 6 21 5.328 21 4.5C21 3.672 20.328 3 19.5 3Z"
+              opacity="0.4"
+              d="M10.3274 21.4119C6.95619 18.7254 3.9999 13.4388 4 10H20C20 13.4388 17.0434 18.7254 13.6723 21.4118C12.6877 22.1965 11.312 22.1965 10.3274 21.4119Z"
               fill="#98A2B3"
             />
           </svg>
           Lieu
-        </Link>
-        <Link>
+        </NavLink>
+        <NavLink to="/Panier">
           <svg
             width="24"
             height="24"
@@ -48,7 +50,7 @@ const Header = () => {
             <path d="M7 6L10 6V7H7V6Z" fill="#98A2B3" />
           </svg>
           Pannier
-        </Link>
+        </NavLink>
       </div>
     </header>
   );

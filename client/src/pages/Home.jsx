@@ -8,7 +8,7 @@ import imgEvent from "../assets/images/hobbie.png";
 const Home = () => {
   return (
     <>
-      <Header />
+      <Header title={"Accueil"} />
       <div className="home">
         <div className="searchBar">
           <Search color="#475467" size="24" />

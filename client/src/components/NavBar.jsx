@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../assets/scss/components/_navBar.scss";
 
 const NavBar = () => {
   return (
     <nav>
-      <Link to="/">
+      <NavLink to="/" activeclassname="active-link">
         <svg
           width="24"
           height="24"
@@ -24,8 +24,28 @@ const NavBar = () => {
           />
         </svg>
         Accueil
-      </Link>
-      <Link to="/Login">
+      </NavLink>
+      <NavLink to="/Favoris" activeclassname="active-link">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            opacity="0.4"
+            d="M20 4H4V20.27C4 21.555 5.352 22.39 6.501 21.816L12 19.066L17.499 21.816C18.648 22.39 20 21.554 20 20.27V4Z"
+            fill="#98A2B3"
+          />
+          <path
+            d="M19.5 3C19.114 3 4.886 3 4.5 3C3.672 3 3 3.672 3 4.5C3 5.328 3.672 6 4.5 6C4.886 6 19.114 6 19.5 6C20.328 6 21 5.328 21 4.5C21 3.672 20.328 3 19.5 3Z"
+            fill="#98A2B3"
+          />
+        </svg>
+        Favoris
+      </NavLink>
+      <NavLink to="/Voyages" activeclassname="active-link">
         <svg
           width="24"
           height="24"
@@ -57,29 +77,9 @@ const NavBar = () => {
           <rect x="9" y="17" width="2" height="2" rx="1" fill="#98A2B3" />
           <rect x="13" y="17" width="2" height="2" rx="1" fill="#98A2B3" />
         </svg>
-        Favoris
-      </Link>
-      <Link to="/Register">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            opacity="0.4"
-            d="M20 4H4V20.27C4 21.555 5.352 22.39 6.501 21.816L12 19.066L17.499 21.816C18.648 22.39 20 21.554 20 20.27V4Z"
-            fill="#98A2B3"
-          />
-          <path
-            d="M19.5 3C19.114 3 4.886 3 4.5 3C3.672 3 3 3.672 3 4.5C3 5.328 3.672 6 4.5 6C4.886 6 19.114 6 19.5 6C20.328 6 21 5.328 21 4.5C21 3.672 20.328 3 19.5 3Z"
-            fill="#98A2B3"
-          />
-        </svg>
         Voyages
-      </Link>
-      <Link to="/Account">
+      </NavLink>
+      <NavLink to="/Compte" activeclassname="active-link">
         <svg
           width="24"
           height="24"
@@ -91,7 +91,7 @@ const NavBar = () => {
           <rect x="3" y="15" width="18" height="6" rx="3" fill="#98A2B3" />
         </svg>
         Comptes
-      </Link>
+      </NavLink>
     </nav>
   );
 };
