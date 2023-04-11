@@ -3,7 +3,19 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    .title-return {
+        display: flex;
+        align-items: center;
+
+        .return {
+            position: absolute;
+            left: 24px;
+        }
+    }
+
     .market-place {
+        position: absolute;
+        right: 24px;
         width: 80px;
         display: flex;
         justify-content: space-between;

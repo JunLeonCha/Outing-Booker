@@ -2,10 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 
-const Header = ({ title }) => {
+const Header = ({ title, arrowBack }) => {
   return (
     <header>
-      <h1>{title}</h1>
+      <div className="title-return">
+        <h1>{title}</h1>
+        <div className="return">{arrowBack}</div>
+      </div>
       <div className="market-place">
         <NavLink to="/Lieu">
           <svg

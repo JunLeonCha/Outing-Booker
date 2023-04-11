@@ -1,5 +1,10 @@
 @import "../_index.scss";
 
+.return {
+    position: absolute;
+    color: white;
+}
+
 .info-event {
     width: 100%;
     display: flex;
@@ -30,11 +35,34 @@
             border: none;
             border-radius: 8px;
             background-color: $Primary500;
-        }   
+        }
 
         span {
             color: $Primary500;
         }
     }
 
+    .info-travels {
+        padding: 0 24px;
+        display: flex;
+        flex-direction: column;
+
+        .travel {
+            padding: 0 24px;
+            border-left: black 2px solid;
+
+            .details {
+                width: 100%;
+                border-radius: 8px;
+                padding: 24px;
+                background-color: #F2F4F7;
+                margin: 24px 0;
+
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
 }
