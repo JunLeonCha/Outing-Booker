@@ -1,13 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 
 const Header = ({ title, arrowBack }) => {
+  let navigate = useNavigate();
+
   return (
     <header>
       <div className="title-return">
         <h1>{title}</h1>
-        <div className="return">{arrowBack}</div>
+        <div className="return" onClick={() => navigate(-1)}>
+          {arrowBack}
+        </div>
       </div>
       <div className="market-place">
         <NavLink to="/Lieu">
