@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 
-const Header = ({ title, arrowBack }) => {
+const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
   let navigate = useNavigate();
 
   return (

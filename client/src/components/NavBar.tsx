@@ -5,7 +5,7 @@ import "../assets/scss/components/_navBar.scss";
 const NavBar = () => {
   return (
     <nav>
-      <NavLink to="/" activeclassname="active-link">
+      <NavLink to="/" className={(props) => props.isActive ? "active-link" : ""}>
         <svg
           width="24"
           height="24"
@@ -25,7 +25,7 @@ const NavBar = () => {
         </svg>
         Accueil
       </NavLink>
-      <NavLink to="/Favoris" activeclassname="active-link">
+      <NavLink to="/Favoris" className={(props) => props.isActive ? "active-link" : ""}>
         <svg
           width="24"
           height="24"
@@ -45,7 +45,7 @@ const NavBar = () => {
         </svg>
         Favoris
       </NavLink>
-      <NavLink to="/Voyages" activeclassname="active-link">
+      <NavLink to="/Voyages" className={(props) => props.isActive ? "active-link" : ""}>
         <svg
           width="24"
           height="24"
@@ -79,7 +79,7 @@ const NavBar = () => {
         </svg>
         Voyages
       </NavLink>
-      <NavLink to="/Compte" activeclassname="active-link">
+      <NavLink to="/Compte" className={(props) => props.isActive ? "active-link" : ""}>
         <svg
           width="24"
           height="24"
