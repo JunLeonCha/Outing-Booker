@@ -4,7 +4,7 @@ import "../../assets/scss/pages/_authentication.scss";
 import axios from "axios";
 
 const Login = () => {
-  function handleFormSubmit(values) {
+  function handleFormSubmit({ values }: { values: object }) {
     console.log(values);
   }
   const connexionFields = [
@@ -12,9 +12,9 @@ const Login = () => {
     { name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
   ];
 
-  const handleSubmit = async () => {
-    axios.post("/")
-  };
+  // const handleSubmit = async () => {
+  //   axios.post("/")
+  // };
 
   return (
     <div className="auth-render">

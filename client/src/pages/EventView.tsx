@@ -6,9 +6,10 @@ import { ArrowLeft } from "lucide-react";
 const EventView = () => {
   useEffect(() => {
     const localPage = window.location.pathname;
-    const getMain = document.querySelector("main");
+    const getMain = document.querySelector("main") as HTMLElement;
+    const header = document.querySelector("header") as HTMLElement;
     if (localPage === "/Evenements") {
-      document.querySelector("header").style.cssText = `
+      header.style.cssText = `
             position: absolute;
             width: 100%;
             color: white;

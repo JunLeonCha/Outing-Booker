@@ -1,10 +1,20 @@
 import React from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
+import axios from "axios";
 
 const Signup = () => {
-  function handleFormSubmit(values) {
+
+  interface signUpFormValues {
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+  }
+
+  function handleFormSubmit(values: signUpFormValues) {
     console.log(values);
+    const res = axios.post("/user/signup", values);
   }
   const registerFields = [
     { name: "firstname", type: "text", placeholder: "John" },
