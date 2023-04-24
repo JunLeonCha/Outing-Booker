@@ -1,4 +1,4 @@
-export type TicketMasterEvent = {
+export interface EventResult {
     name: string;
     type: string;
     id: string;

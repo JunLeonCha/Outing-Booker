@@ -3,6 +3,6 @@ import { getAllEvent } from "../../Controllers/Extern-API/Ticket-Master.Controll
 
 const router = express.Router()
 
-router.get("/Ticket-Master", getAllEvent)
+router.get("/Ticket-Master/All-Event", getAllEvent)
 
 export default router;

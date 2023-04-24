@@ -11,6 +11,7 @@ const PORT = process.env.PORT
 app.use(express.json());
 
 app.use("/api/user/", Authentication)
+app.use("/api/extern-api/", TicketMasterRouter)
 
 app.listen(PORT, () => {
     console.log(`Server run on: ${PORT}`)

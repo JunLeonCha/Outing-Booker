@@ -9,6 +9,7 @@ import Voyages from "./pages/Voyages";
 import Account from "./pages/Account";
 import ShopingCard from "./pages/ShopingCard";
 import EventView from "./pages/EventView";
+import Event from "./pages/Event";
 
 function App() {
   // const title = window.location.pathname.split('/')
@@ -18,6 +19,7 @@ function App() {
     { path: "/Favoris", element: <Favoris /> },
     { path: "/Voyages", element: <Voyages /> },
     { path: "/Evenements", element: <EventView /> },
+    { path: "/test", element: <Event /> },
     { path: "/Connexion", element: <Login /> },
     { path: "/Inscription", element: <Register /> },
     { path: "/Compte", element: <Account /> },
