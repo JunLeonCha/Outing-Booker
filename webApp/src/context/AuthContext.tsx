@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ReactNode } from 'react';
-import { SessionData } from '../interfaces/SessionData';
 
 export const AuthContext = createContext<any>(null);
 
@@ -28,13 +27,15 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     const data = res.data
     setSession(data);
     sessionStorage.setItem('session', JSON.stringify(data));
-    console.log(session)
+    window.location.assign("/")
   };
 
   const handleLogout = async () => {
     setSession({});
     sessionStorage.removeItem('session');
-    await axios.post('/user/signOut')
+    await axios.post('/user/signOut').then(() => {
+      window.location.assign("/")
+    })
   };
 
   return (

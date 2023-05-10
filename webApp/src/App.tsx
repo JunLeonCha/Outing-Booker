@@ -8,7 +8,7 @@ import Favoris from "./pages/Favoris";
 import Voyages from "./pages/Voyages";
 import Account from "./pages/Account";
 import ShopingCard from "./pages/ShopingCard";
-import EventView from "./pages/EventDetails";
+import EventView from "./pages/Events/EventDetails";
 import AllEvent from "./pages/Events/AllEvents";
 import Layout from "./pages/Layout";
 import { ArrowLeft, ArrowRight } from "lucide-react";

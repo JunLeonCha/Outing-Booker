@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, ReactNode } from 'react';
 import { EventResult } from '../../interfaces/ticketMaster';
 import { useNavigate } from 'react-router-dom';
+import "../../assets/scss/pages/_allEvents.scss";
 
 const EventResultView = () => {
 
@@ -21,15 +22,18 @@ const EventResultView = () => {
         allEvents();
     }, []);
 
-    console.log(eventResults);
-
     return (
-        <div>
+        <div className='events'>
             {eventResults.map((eventResult: EventResult) => (
-                <div key={eventResult.id} onClick={() => handleClickDetails(eventResult.id)}>
-                    <div>{eventResult.name}</div>
+                <div className="event" key={eventResult.id}>
+                    <h2>{eventResult.name}</h2>
                     <div>Genre: {eventResult.classifications[0].segment.name}</div>
-                    <div><img src={eventResult.images[2].url} style={{ width: 300, borderRadius: 8 }} alt="" /></div>
+                    <img
+                        src={eventResult.images[2].url}
+                        style={{ width: 300, borderRadius: 8 }}
+                        alt="event-image"
+                        onClick={() => handleClickDetails(eventResult.id)}
+                    />
                     <div>Adresse: {eventResult._embedded.venues[0].name}</div>
                     <div>Ville: {eventResult._embedded.venues[0].city.name}</div>
                     <div>Pays: {eventResult._embedded.venues[0].country.name}</div>

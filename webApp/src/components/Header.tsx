@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
   let navigate = useNavigate();
-
+  const { handleLogout, session } = useAuth()
   return (
     <header>
       <div className="title-return">
@@ -59,6 +59,16 @@ const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
           </svg>
           Pannier
         </NavLink>
+        {session != null &&
+          <div onClick={handleLogout}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="lucide lucide-log-out">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" x2="9" y1="12" y2="12"></line>
+            </svg>
+            Déconnexion
+          </div>
+        }
       </div>
     </header>
   );
