@@ -8,22 +8,24 @@ import Favoris from "./pages/Favoris";
 import Voyages from "./pages/Voyages";
 import Account from "./pages/Account";
 import ShopingCard from "./pages/ShopingCard";
-import EventView from "./pages/EventView";
-import Event from "./pages/Event";
+import EventView from "./pages/EventDetails";
+import AllEvent from "./pages/Events/AllEvents";
+import Layout from "./pages/Layout";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 function App() {
   // const title = window.location.pathname.split('/')
   const routes = [
-    { path: "/", element: <Home /> },
-    { path: "/Accueil", element: <Home /> },
-    { path: "/Favoris", element: <Favoris /> },
-    { path: "/Voyages", element: <Voyages /> },
-    { path: "/Evenements", element: <EventView /> },
-    { path: "/test", element: <Event /> },
+    { path: "/", element: <Layout content={< Home />} title="Accueil" /> },
+    { path: "/Accueil", element: <Layout content={< Home />} title="Accueil" /> },
+    { path: "/Favoris", element: <Layout content={< Favoris />} title="Favoris" /> },
+    { path: "/Voyages", element: <Layout content={< Voyages />} title="Voyages" /> },
+    { path: "/test", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
+    { path: "/Evenements", element: <Layout content={< AllEvent />} title={"Evènements"} /> },
     { path: "/Connexion", element: <Login /> },
     { path: "/Inscription", element: <Register /> },
-    { path: "/Compte", element: <Account /> },
-    { path: "/Panier", element: <ShopingCard /> },
+    { path: "/Compte", element: <Layout content={< Account />} title="Compte" /> },
+    { path: "/Panier", element: <Layout content={< ShopingCard />} title="Panier" /> },
     { path: "/*", element: <ERROR_404 /> },
   ];
 

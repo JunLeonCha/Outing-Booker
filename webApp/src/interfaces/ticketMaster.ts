@@ -1,4 +1,4 @@
-export interface EventResult {
+export type EventResult = {
     name: string;
     type: string;
     id: string;
@@ -29,51 +29,51 @@ export interface EventResult {
         status: {
             code: string;
         }
-        classification: {
-            primary: boolean;
-            segment: {
-                id: string;
-                name: string
-            }
-            genre: {
-                id: string;
-                name: string
-            }
-            subGenre: {
-                id: string;
-                name: string
-            }
-            family: boolean
+    };
+    classifications: {
+        primary: boolean;
+        segment: {
+            id: string;
+            name: string
         }
-        priceRanges: {
+        genre: {
+            id: string;
+            name: string
+        }
+        subGenre: {
+            id: string;
+            name: string;
+        }
+        family: boolean
+    }[];
+    priceRanges: {
+        type: string;
+        currency: string;
+        min: number;
+        max: number;
+    }
+    _embedded: {
+        venues: [{
+            name: string;
             type: string;
-            currency: string;
-            min: number;
-            max: number;
-        }
-        _embedded: {
-            venues: {
+            id: string;
+            additionalInfo: string;
+            img: [{
+                url: string;
+            }]
+            postalCode: string;
+            city: { name: string }
+            country: {
                 name: string;
-                type: string;
-                id: string;
-                additionalInfo: string;
-                img: {
-                    url: string;
-                }
-                postalCode: string;
-                city: { name: string }
-                country: {
-                    name: string;
-                    countryCode: string;
-                }
-                address: {
-                    line1: string;
-                }
-                location: {
-                    longitude: string;
-                    latitude: string;
-                }
+                countryCode: string;
             }
-        }
+            address: {
+                line1: string;
+            }
+            location: {
+                longitude: string;
+                latitude: string;
+            }
+        }]
     }
 }

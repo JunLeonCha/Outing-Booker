@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
+import { AuthContext } from '../context/AuthContext';
 
 const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
   let navigate = useNavigate();

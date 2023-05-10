@@ -5,7 +5,6 @@ import WanderLists from "../localjsons/testWanderList.json";
 const Favoris = () => {
   return (
     <>
-      <Header title={"Favoris"} />
       <div className="favoris">
         <div className="onglet">
           <div>Évènement</div>

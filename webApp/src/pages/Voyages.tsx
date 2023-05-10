@@ -6,7 +6,6 @@ import WanderLists from "../localjsons/testWanderList.json";
 const Voyages = () => {
   return (
     <>
-      <Header title={"Voyages"} />
       <div className="travels">
         <div className="onglet">
           <p>Voyages en cours</p>

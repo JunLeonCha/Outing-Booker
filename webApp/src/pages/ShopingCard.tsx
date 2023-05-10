@@ -7,7 +7,6 @@ const ShopingCard = () => {
   const totalPrices = WanderLists.reduce((acc, event) => acc + event.prix, 0);
   return (
     <>
-      <Header title={"Panier"} />
       <p>
         {totalTravels < 1
           ? totalTravels + " Voyage"

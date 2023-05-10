@@ -5,7 +5,6 @@ import "../assets/scss/pages/_account.scss";
 const Account = () => {
   return (
     <>
-      <Header title={"Compte"} />
       <div className="account">
         <div className="onglet">
           <p>logo</p>

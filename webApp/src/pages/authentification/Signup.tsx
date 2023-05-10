@@ -14,7 +14,7 @@ const Signup = () => {
 
   function handleFormSubmit(values: signUpFormValues) {
     console.log(values);
-    const res = axios.post("/user/signup", values);
+    axios.post("/user/signup", values);
   }
   const registerFields = [
     { name: "firstname", type: "text", placeholder: "John" },

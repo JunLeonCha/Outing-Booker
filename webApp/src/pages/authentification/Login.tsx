@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  function handleFormSubmit({ values }: { values: object }) {
-    console.log(values);
+  const navigate = useNavigate();
+  const { handleLogin, session } = useContext(AuthContext)
+  // console.log(session)
+
+  type signUpFormValues = {
+    email: string,
+    password: string
+  }
+
+  const handleFormSubmit = async (values: signUpFormValues) => {
+    try {
+      const res = await handleLogin(values)
+    } catch (error) {
+      console.log(error);
+    }
+
   }
   const connexionFields = [
     { name: "email", type: "email", placeholder: "toto@gmail.com" },

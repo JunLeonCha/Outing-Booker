@@ -3,12 +3,12 @@ import Header from "../components/Header";
 import "../assets/scss/pages/_eventView.scss";
 import { ArrowLeft } from "lucide-react";
 
-const EventView = () => {
+const EventDetails = () => {
   useEffect(() => {
     const localPage = window.location.pathname;
     const getMain = document.querySelector("main") as HTMLElement;
     const header = document.querySelector("header") as HTMLElement;
-    if (localPage === "/Evenements") {
+    if (localPage === "/test") {
       header.style.cssText = `
             position: absolute;
             width: 100%;
@@ -27,7 +27,6 @@ const EventView = () => {
 
   return (
     <>
-      <Header arrowBack={<ArrowLeft />} />
       <div className="info-event">
         <img
           src="http://s1.picswalls.com/wallpapers/2016/06/16/beautiful-earth-wallpaper_033132218_311.jpg"
@@ -101,4 +100,4 @@ const EventView = () => {
   );
 };
 
-export default EventView;
+export default EventDetails;
