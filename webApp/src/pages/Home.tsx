@@ -1,5 +1,3 @@
-import React from "react";
-import Header from "../components/Header";
 import "../assets/scss/pages/_home.scss";
 import { Search } from "lucide-react";
 import imgConcert from "../assets/images/concert.png";

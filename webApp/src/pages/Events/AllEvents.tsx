@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import { EventResult } from '../../interfaces/ticketMaster';
 import { useNavigate } from 'react-router-dom';
 import "../../assets/scss/pages/_allEvents.scss";

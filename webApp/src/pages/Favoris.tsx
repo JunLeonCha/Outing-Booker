@@ -1,7 +1,4 @@
-import React from "react";
 import "../assets/scss/pages/_wanderlists.scss";
-import Header from "../components/Header";
-import WanderLists from "../localjsons/testWanderList.json";
 const Favoris = () => {
   return (
     <>

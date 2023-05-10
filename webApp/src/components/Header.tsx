@@ -1,4 +1,3 @@
-import React, { useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 import { useAuth } from '../context/AuthContext';

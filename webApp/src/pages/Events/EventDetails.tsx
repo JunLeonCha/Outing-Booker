@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import Header from "../../components/Header";
 import "../../assets/scss/pages/_eventDetail.scss";
-import { ArrowLeft } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const EventDetails = () => {
   const location = useLocation();
+  const getMain = document.querySelector("main") as HTMLElement;
+  const header = document.querySelector("header") as HTMLElement;
 
-  useEffect(() => {
-    const getMain = document.querySelector("main") as HTMLElement;
-    const header = document.querySelector("header") as HTMLElement;
+
+  const newStyle = () => {
     if (location.pathname === "/test") {
       header.style.cssText = `
             position: absolute;
@@ -22,10 +21,17 @@ const EventDetails = () => {
     } else {
       getMain.style.padding = "24px";
     }
-    return () => {
-      header.style.cssText = `
+  }
+  const resetStyle = () => {
+    header.style.cssText = `
     `;
-      getMain.style.padding = "24px";
+    getMain.style.padding = "24px";
+  }
+
+  useEffect(() => {
+    newStyle()
+    return () => {
+      resetStyle()
     };
   }, [location.pathname]);
 

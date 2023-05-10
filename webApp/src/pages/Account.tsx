@@ -1,5 +1,3 @@
-import React from "react";
-import Header from "../components/Header";
 import "../assets/scss/pages/_account.scss";
 
 const Account = () => {
