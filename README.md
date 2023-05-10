@@ -9,88 +9,10 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 Node.js [Télécharger NodeJS](https://nodejs.org/)
 
 Installer la version LTS (Long Term Support)
-export type TicketMasterEvent = {
-    name: string;
-    type: string;
-    id: string;
-    description: string;
-    url: string;
-    image: {
-        url: string;
-    }[];
-    sales: {
-        public: {
-            startDateTime: string;
-            startTBD: boolean;
-            startTBA: boolean;
-            endDateTime: string;
-        }
-    }
-    dates: {
-        start: {
-            localDate: string;
-            localTime: string;
-            dateTime: string;
-            dateTBD: boolean,
-            dateTBA: boolean,
-            timeTBA: boolean,
-            noSpecificTime: boolean
-        }
-        timezone: string;
-        status: {
-            code: string;
-        }
-        classification: {
-            primary: boolean;
-            segment: {
-                id: string;
-                name: string
-            }
-            genre: {
-                id: string;
-                name: string
-            }
-            subGenre: {
-                id: string;
-                name: string
-            }
-            family: boolean
-        }
-        priceRanges: {
-            type: string;
-            currency: string;
-            min: number;
-            max: number;
-        }
-        _embedded: {
-            venues: {
-                name: string;
-                type: string;
-                id: string;
-                additionalInfo: string;
-                img: {
-                    url: string;
-                }
-                postalCode: string;
-                city: { name: string }
-                country: {
-                    name: string;
-                    countryCode: string;
-                }
-                address: {
-                    line1: string;
-                }
-                location: {
-                    longitude: string;
-                    latitude: string;
-                }
-            }
-        }
-    }
-}
+
 ## Installation
 
-#### Client
+### WebApp
 Ouvrez un terminal et accédez au répertoire du client.
 ```
 cd client
@@ -107,7 +29,7 @@ npm start
 Ouvrez votre navigateur et accédez à http://localhost:3000 pour voir l'application client s'exécuter localement.
 Serveur (Node.js)
 
-### Server
+### Api
 
 Ouvrez un autre terminal et accédez au répertoire du server.
 ```
@@ -117,9 +39,10 @@ Exécutez npm install pour installer les dépendances du server.
 ```
 npm install
 ```
-Configurez les variables d'environnement nécessaires, telles que les informations de connexion à la base de données ou d'autres configurations spécifiques de votre application.
-Ensuite, exécutez npm start pour démarrer le serveur.
-Votre serveur sera maintenant en cours d'exécution sur le port spécifié dans votre configuration.
+Ensuite, exécutez npm run dev pour démarrer l'api en mode développement.
+```
+npm run dev
+```
 
 ## Utilisation
 
