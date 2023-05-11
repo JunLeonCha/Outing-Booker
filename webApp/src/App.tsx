@@ -19,11 +19,14 @@ function App() {
 		{path: "/Accueil", element: <Layout content={< Home/>} title="Accueil" className="home"/>},
 		{path: "/Favoris", element: <Layout content={< Favoris/>} title="Favoris" className="favoris"/>},
 		{path: "/Voyages", element: <Layout content={< Voyages/>} title="Voyages" className="voyages"/>},
-		{path: "/Evenement/:id", element: <Layout content={< EventView/>} arrowBack={<ArrowLeft/>} className="event"/>},
+		{
+			path: "/Evenement/:id",
+			element: <Layout content={< EventView/>} arrowBack={<ArrowLeft/>} className="eventDetails"/>
+		},
 		{path: "/Evenements", element: <Layout content={< AllEvent/>} title={"Evènements"} className="event"/>},
 		{path: "/Connexion", element: <Login/>},
 		{path: "/Inscription", element: <Register/>},
-		{path: "/Compte", element: <Layout content={< Account/>} title="Compte"/>},
+		{path: "/Compte", element: <Layout content={< Account/>} title="Compte" className="account"/>},
 		{path: "/Panier", element: <Layout content={< ShopingCard/>} title="Panier"/>},
 		{path: "/*", element: <ERROR_404/>},
 	];
