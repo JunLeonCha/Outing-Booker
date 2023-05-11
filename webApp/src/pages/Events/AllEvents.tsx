@@ -7,7 +7,7 @@ import "../../assets/scss/pages/_allEvents.scss";
 
 const EventResultView = () => {
 
-    const [eventResults, setEventResults] = useState<EventResult[]>([]);
+    const [eventsResult, setEventsResult] = useState<EventResult[]>([]);
     const navigate = useNavigate()
 
     const handleClickDetails = (id: string) => {
@@ -17,14 +17,14 @@ const EventResultView = () => {
     useEffect(() => {
         const allEvents = async () => {
             const resultsEvent = await axios.get("/extern-api/Ticket-Master/All-Event/");
-            setEventResults(resultsEvent.data);
+            setEventsResult(resultsEvent.data);
         }
         allEvents();
     }, []);
 
     return (
         <div className='events'>
-            {eventResults.map((eventResult: EventResult) => (
+            {eventsResult.map((eventResult: EventResult) => (
                 <div className="event" key={eventResult.id}>
                     <h2>{eventResult.name}</h2>
                     <div>Genre: {eventResult.classifications[0].segment.name}</div>

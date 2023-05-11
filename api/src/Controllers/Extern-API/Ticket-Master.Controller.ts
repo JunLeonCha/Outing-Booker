@@ -8,6 +8,15 @@ export const getAllEvent = async (req: Request, res: Response) => {
     return res.status(200).json(result);
 }
 
+export const getEventById = async (req: Request, res: Response) => {
+    const result = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${req.params.id}?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*`)
+        .then(res => res.json())
+        .then(data => data)
+
+    console.log(result)
+    return res.status(200).json(result);
+}
+
 export const getMusicEvent = async (req: Request, res: Response) => {
     const result = await fetch("https://app.ticketmaster.com/discovery/v2/events?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*&countryCode=FR&classificationName=music")
         .then(res => res.json())
