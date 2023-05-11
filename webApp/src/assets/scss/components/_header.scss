@@ -1,36 +1,44 @@
+@use '../colors' as *;
+
 header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 24px;
+    background: $White;
 
-    .title-return {
+    .title {
         display: flex;
         align-items: center;
 
-        .return {
+        h1 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        &__back {
             position: absolute;
             left: 24px;
         }
     }
 
-    .market-place {
-        position: absolute;
-        right: 24px;
-        width: 200px;
+    .links {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-
-        div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        gap: 32px;
 
         a {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
         }
     }
 }

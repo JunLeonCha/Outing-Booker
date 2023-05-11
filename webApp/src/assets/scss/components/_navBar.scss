@@ -1,4 +1,4 @@
-@import "../_index.scss";
+@use "../index" as *;
 
 nav {
     position: fixed;
@@ -23,15 +23,15 @@ nav {
         text-decoration: none;
         color: black;
 
-        &.active {
+        &.active-link {
             color: $Primary500;
         }
 
     }
 
-    .active svg path,
-    .active svg rect,
-    .active svg circle {
+    .active-link svg path,
+    .active-link svg rect,
+    .active-link svg circle {
         fill: $Primary500;
 
     }

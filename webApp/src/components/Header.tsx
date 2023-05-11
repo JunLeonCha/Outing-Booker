@@ -7,13 +7,13 @@ const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
   const { handleLogout, session } = useAuth()
   return (
     <header>
-      <div className="title-return">
+      <div className="title">
         <h1>{title}</h1>
-        <div className="return" onClick={() => navigate(-1)}>
+        <div className="title__back" onClick={() => navigate(-1)}>
           {arrowBack}
         </div>
       </div>
-      <div className="market-place">
+      <div className="links">
         <NavLink to="/Lieu">
           <svg
             width="24"
@@ -56,7 +56,7 @@ const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
             <path d="M14 6L17 6V7H14V6Z" fill="#98A2B3" />
             <path d="M7 6L10 6V7H7V6Z" fill="#98A2B3" />
           </svg>
-          Pannier
+          Panier
         </NavLink>
         {session != null &&
           <div onClick={handleLogout}>

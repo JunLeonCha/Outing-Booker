@@ -1,5 +1,5 @@
-@import "./_colors.scss";
-@import "./_font-family.scss";
+@import 'colors';
+@import 'fonts' ;
 
 * {
     box-sizing: border-box;
@@ -18,4 +18,10 @@ html {
 main#root {
     min-height: 100vh;
     padding: 24px;
+}
+
+a {
+    text-decoration: none;
+    appearance: none;
+    color: $Gray800;
 }
