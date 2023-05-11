@@ -5,39 +5,40 @@ import axios from "axios";
 
 const Signup = () => {
 
-  interface signUpFormValues {
-    firstname: string,
-    lastname: string,
-    email: string,
-    password: string
-  }
+	interface signUpFormValues {
+		firstname: string,
+		lastname: string,
+		email: string,
+		password: string
+	}
 
-  function handleFormSubmit(values: signUpFormValues) {
-    console.log(values);
-    axios.post("/user/signup", values);
-  }
-  const registerFields = [
-    { name: "firstname", type: "text", placeholder: "John" },
-    { name: "lastname", type: "text", placeholder: "Doe" },
-    { name: "email", type: "email", placeholder: "toto@gmail.com" },
-    { name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
-    { name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx" },
-  ];
+	function handleFormSubmit(values: signUpFormValues) {
+		console.log(values);
+		axios.post("/user/signup", values);
+	}
 
-  return (
-    <div className="auth-render">
-      <h1>LOGO</h1>
-      <div className="auth-form">
-        <h1>S'inscrire</h1>
-        <DynamicForm
-          onSubmit={handleFormSubmit}
-          fields={registerFields}
-          textButton={"S'inscrire"}
-        />
-      </div>
-      <a href="/">Retour</a>
-    </div>
-  );
+	const registerFields = [
+		{name: "firstname", type: "text", placeholder: "John"},
+		{name: "lastname", type: "text", placeholder: "Doe"},
+		{name: "email", type: "email", placeholder: "toto@gmail.com"},
+		{name: "password", type: "password", placeholder: "xxxxxxxxxxx"},
+		{name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx"},
+	];
+
+	return (
+		<div className="auth-register">
+			<h1>LOGO</h1>
+			<div className="auth-register__form">
+				<h1>S'inscrire</h1>
+				<DynamicForm
+					onSubmit={handleFormSubmit}
+					fields={registerFields}
+					textButton={"S'inscrire"}
+				/>
+			</div>
+			<a href="/">Retour</a>
+		</div>
+	);
 };
 
 export default Signup;
