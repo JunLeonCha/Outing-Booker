@@ -25,6 +25,7 @@ header {
     &__back {
       position: absolute;
       left: 24px;
+      color: $White;
     }
   }
 
@@ -40,6 +41,17 @@ header {
       align-items: center;
       gap: 8px;
       font-size: 0.75rem;
+    }
+  }
+
+  &.event {
+    background: $Gray800;
+    backdrop-filter: blur(8px);
+
+    .links {
+      a {
+        color: $White;
+      }
     }
   }
 }
