@@ -1,0 +1,45 @@
+@import "../_index.scss";
+
+
+//css pour favoris et voyages
+.favoris {
+  margin-top: 54px;
+
+  h2 {
+    font-family: PPEiko, sans-serif;
+  }
+
+  .tabs {
+    position: fixed;
+    top: 95px;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    border-bottom: 1px solid $Gray300;
+
+    &__button {
+      all: unset;
+      flex-grow: 1;
+      padding: 16px;
+      font-family: Aktiv, sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: -1px;
+
+      &--active {
+        color: $Primary500;
+        border-bottom: 1px solid $Primary500;
+      }
+    }
+  }
+}
+
+.feeds {
+  img {
+    width: 100%;
+    height: 104px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+}

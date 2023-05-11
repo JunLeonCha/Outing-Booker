@@ -1,39 +1,51 @@
 @use "../index" as *;
 
 nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    font-family: HelveticaFont;
-    background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+  gap: 8px;
+
+
+  a {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 24px 40px;
+    max-width: 24px;
     gap: 8px;
+    text-decoration: none;
+    color: black;
 
+    &.active-link {
+      color: $Primary500;
+    }
 
-    a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 24px;
-        gap: 8px;
-        text-decoration: none;
-        color: black;
+    &:where(:focus, :hover, :focus-visible) {
+      outline: none;
+      color: $Primary500;
 
-        &.active-link {
-            color: $Primary500;
+      svg {
+        path,
+        rect,
+        circle {
+          fill: $Primary500;
         }
-
+      }
     }
 
-    .active-link svg path,
-    .active-link svg rect,
-    .active-link svg circle {
-        fill: $Primary500;
+  }
 
-    }
+  .active-link svg path,
+  .active-link svg rect,
+  .active-link svg circle {
+    fill: $Primary500;
+
+  }
 
 }
