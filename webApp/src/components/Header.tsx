@@ -1,12 +1,15 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../assets/scss/components/_header.scss";
 import { useAuth } from '../context/AuthContext';
 
 const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
   let navigate = useNavigate();
+  let location = useLocation();
   const { handleLogout, session } = useAuth()
+  const pathname = location.pathname.split("/")[1]
+
   return (
-    <header>
+    <header className={pathname == "evenement" ? "event" : ""}>
       <div className="title">
         <h1>{title}</h1>
         <div className="title__back" onClick={() => navigate(-1)}>

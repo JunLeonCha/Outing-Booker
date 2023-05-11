@@ -13,8 +13,8 @@ const Layout: React.FC<LayoutProps> = ({ content, title, arrowBack, className })
     return (
         <div id='content'>
             <Header title={title} arrowBack={arrowBack} />
-            <div className={className}>
-            {content}
+            <div className={className} >
+                {content}
             </div>
             <NavBar />
         </div>
