@@ -1,7 +1,6 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import ERROR_404 from "./pages/error/ERROR_404";
-import NavBar from "./components/NavBar";
 import Login from "./pages/authentification/Login";
 import Register from "./pages/authentification/Signup";
 import Favoris from "./pages/Favoris";
@@ -11,7 +10,7 @@ import ShopingCard from "./pages/ShopingCard";
 import EventView from "./pages/Events/EventDetails";
 import AllEvent from "./pages/Events/AllEvents";
 import Layout from "./pages/Layout";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 function App() {
   // const title = window.location.pathname.split('/')
@@ -20,7 +19,7 @@ function App() {
     { path: "/Accueil", element: <Layout content={< Home />} title="Accueil" /> },
     { path: "/Favoris", element: <Layout content={< Favoris />} title="Favoris" /> },
     { path: "/Voyages", element: <Layout content={< Voyages />} title="Voyages" /> },
-    { path: "/test", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
+    { path: "/Evenement/:id", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
     { path: "/Evenements", element: <Layout content={< AllEvent />} title={"Evènements"} /> },
     { path: "/Connexion", element: <Login /> },
     { path: "/Inscription", element: <Register /> },
@@ -37,7 +36,6 @@ function App() {
             <Route key={route.path} path={route.path} element={route.element} />
           ))}
         </Routes>
-        <NavBar />
       </BrowserRouter>
     </>
   );

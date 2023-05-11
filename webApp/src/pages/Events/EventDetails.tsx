@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "../../assets/scss/pages/_eventDetail.scss";
 import { useLocation } from "react-router-dom";
 
@@ -6,26 +6,33 @@ const EventDetails = () => {
   const location = useLocation();
   const getMain = document.querySelector("main") as HTMLElement;
   const header = document.querySelector("header") as HTMLElement;
+  const eventId = location.pathname.split("/")[2]
+  const pathname = location.pathname.split("/")[1]
+  console.log(eventId)
 
 
   const newStyle = () => {
-    if (location.pathname === "/test") {
-      header.style.cssText = `
-            position: absolute;
-            width: 100%;
-            color: white;
-            background-color: black;
-            height: 92px;
-          `;
-      getMain.style.padding = "0";
-    } else {
+    if (header && getMain) {
+      if (pathname === `Evenement`) {
+        header.style.cssText = `
+          position: absolute;
+          width: 100%;
+          color: white;
+          background-color: black;
+          height: 92px;
+        `;
+        getMain.style.padding = "0";
+      } else {
+        getMain.style.padding = "24px";
+      }
+    }
+  };
+
+  const resetStyle = () => {
+    if (header && getMain) {
+      header.style.cssText = "";
       getMain.style.padding = "24px";
     }
-  }
-  const resetStyle = () => {
-    header.style.cssText = `
-    `;
-    getMain.style.padding = "24px";
   }
 
   useEffect(() => {
@@ -33,7 +40,7 @@ const EventDetails = () => {
     return () => {
       resetStyle()
     };
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <>
