@@ -1,27 +1,29 @@
 @import 'colors';
-@import 'fonts' ;
+@import 'fonts';
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body,
 html {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  font-family: Aktiv, sans-serif;
+  color: $Gray800;
 }
 
 html {
-    font-size: 100%;
-}
-
-main#root {
-    min-height: 100vh;
-    padding: 24px;
+  font-size: 100%;
 }
 
 a {
-    text-decoration: none;
-    appearance: none;
-    color: $Gray800;
+  text-decoration: none;
+  appearance: none;
+  color: $Gray800;
+}
+
+#content {
+  min-height: 100vh;
+  padding: 119px 24px 160px 24px;
 }

@@ -1,37 +1,108 @@
 @use "../index" as *;
 
 .home {
-    h2 {
-        font-family: PPEiko;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .searchBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    svg {
+      left: 16px;
+      position: absolute;
     }
 
+    input {
+      width: 100%;
+      padding: 0 16px 0 56px;
+      min-height: 48px;
+      border: 1px solid $Gray300;
+      border-radius: 8px;
+      color: $Gray600;
+      font-family: Aktiv, sans-serif;
+
+      &:where(:focus, :hover, :focus-visible) {
+        outline: none;
+        border: 1px solid $Primary500;
+      }
+    }
+  }
+
+  .cards-row {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 
-    .searchBar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
+    h2, h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
 
-        svg {
-            left: 16px;
+    h2 {
+      font-family: PPEiko, sans-serif;
+      font-weight: 900;
+    }
+
+    h3 {
+      font-weight: 400;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(100% 100% at 0% 100%, $Gray800 0%, rgba(29, 41, 57, 0) 100%),
+    }
+
+    &--categories {
+      .cards-row__list {
+        &_card {
+          position: relative;
+          width: 200px;
+          height: 104px;
+          border-radius: 8px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          padding: 16px;
+          flex-shrink: 0;
+
+          h3 {
+            color: $White;
+            z-index: 1;
+          }
+
+          img {
             position: absolute;
+            inset: 0;
+            object-fit: cover;
+          }
         }
-
-        input {
-            width: 100%;
-            padding: 0 16px 0 56px;
-            min-height: 48px;
-            border: 1px solid $Gray300;
-            border-radius: 8px;
-        }
+      }
     }
 
-    .events-box {
+    &__list {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+
+      &_card {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
         img {
-            width: 200px;
-            border-radius: 8px;
+          position: relative;
+          width: 200px;
+          height: 104px;
+          border-radius: 8px;
         }
+      }
     }
+  }
 }

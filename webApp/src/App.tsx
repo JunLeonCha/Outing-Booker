@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import {Route, Routes, BrowserRouter} from "react-router-dom";
 import Home from "./pages/Home";
 import ERROR_404 from "./pages/error/ERROR_404";
 import Login from "./pages/authentification/Login";
@@ -10,35 +10,35 @@ import ShopingCard from "./pages/ShopingCard";
 import EventView from "./pages/Events/EventDetails";
 import AllEvent from "./pages/Events/AllEvents";
 import Layout from "./pages/Layout";
-import { ArrowLeft } from "lucide-react";
+import {ArrowLeft} from "lucide-react";
 
 function App() {
-  // const title = window.location.pathname.split('/')
-  const routes = [
-    { path: "/", element: <Layout content={< Home />} title="Accueil" /> },
-    { path: "/accueil", element: <Layout content={< Home />} title="Accueil" /> },
-    { path: "/favoris", element: <Layout content={< Favoris />} title="Favoris" /> },
-    { path: "/voyages", element: <Layout content={< Voyages />} title="Voyages" /> },
-    { path: "/evenement/:id", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
-    { path: "/evenements", element: <Layout content={< AllEvent />} title={"Evènements"} /> },
-    { path: "/connexion", element: <Login /> },
-    { path: "/inscription", element: <Register /> },
-    { path: "/compte", element: <Layout content={< Account />} title="Compte" /> },
-    { path: "/panier", element: <Layout content={< ShopingCard />} title="Panier" /> },
-    { path: "/*", element: <ERROR_404 /> },
-  ];
+	// const title = window.location.pathname.split('/')
+	const routes = [
+		{path: "/", element: <Layout content={< Home/>} title="Accueil" className="home"/>},
+		{path: "/Accueil", element: <Layout content={< Home/>} title="Accueil" className="home"/>},
+		{path: "/Favoris", element: <Layout content={< Favoris/>} title="Favoris" className="favoris"/>},
+		{path: "/Voyages", element: <Layout content={< Voyages/>} title="Voyages" className="voyages"/>},
+		{path: "/Evenement/:id", element: <Layout content={< EventView/>} arrowBack={<ArrowLeft/>} className="event"/>},
+		{path: "/Evenements", element: <Layout content={< AllEvent/>} title={"Evènements"} className="event"/>},
+		{path: "/Connexion", element: <Login/>},
+		{path: "/Inscription", element: <Register/>},
+		{path: "/Compte", element: <Layout content={< Account/>} title="Compte"/>},
+		{path: "/Panier", element: <Layout content={< ShopingCard/>} title="Panier"/>},
+		{path: "/*", element: <ERROR_404/>},
+	];
 
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {routes.map((route) => (
-            <Route key={route.path} path={route.path} element={route.element} />
-          ))}
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					{routes.map((route) => (
+						<Route key={route.path} path={route.path} element={route.element}/>
+					))}
+				</Routes>
+			</BrowserRouter>
+		</>
+	);
 }
 
 export default App;

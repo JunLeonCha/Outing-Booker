@@ -1,9 +1,18 @@
 @font-face {
-    font-family: PPEiko;
-    src: url(../fonts/PP_Eiko/PPEiko-Regular.ttf);
+  font-family: PPEiko;
+  src: url(../fonts/PP_Eiko/PPEiko-Regular.woff) format("woff"), url(../fonts/PP_Eiko/PPEiko-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: HelveticaFont;
-    src: url(../fonts/HelveticaFont/Helvetica.ttf);
+  font-family: PPEiko;
+  src: url(../fonts/PP_Eiko/PPEiko-Black.woff) format("woff"), url(../fonts/PP_Eiko/PPEiko-Black.woff2) format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Aktiv;
+  src: url(../fonts/Aktiv_Grotesk/AktivGrotesk_Variable.ttf) format("truetype-variations");
 }
