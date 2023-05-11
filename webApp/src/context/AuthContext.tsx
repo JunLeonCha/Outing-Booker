@@ -20,8 +20,6 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }, []);
 
-  console.log(session)
-
   const handleLogin = async (values: object) => {
     const res = await axios.post('/user/signIn', values);
     const data = res.data

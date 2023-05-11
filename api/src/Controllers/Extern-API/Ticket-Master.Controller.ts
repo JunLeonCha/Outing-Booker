@@ -12,8 +12,6 @@ export const getEventById = async (req: Request, res: Response) => {
     const result = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${req.params.id}?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*`)
         .then(res => res.json())
         .then(data => data)
-
-    console.log(result)
     return res.status(200).json(result);
 }
 

@@ -7,8 +7,6 @@ const Inputs = () => {
         setSearchValue(inputSearch)
     }
 
-    console.log(searchValue)
-
     return (
         <TextInput
             style={styles.input}
