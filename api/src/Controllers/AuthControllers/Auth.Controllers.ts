@@ -11,20 +11,18 @@ export const SignIn = async (req: Request, res: Response) => {
             password: Login.password,
         }
         );
-        console.log(data)
         if (data?.session?.user) {
             const { access_token, user: { id, user_metadata } } = data.session;
             const { email, firstname, lastname } = user_metadata ?? {};
             res.json({ id, access_token, email, firstname, lastname });
         }
     } catch (error) {
-        return console.log(error)
+        res.send(error)
     }
 }
 
 export const SignOut = async (req: Request, res: Response) => {
     const logout = await supabase.auth.signOut();
-    console.log(logout)
 }
 
 export const SignUp = async (req: Request, res: Response) => {

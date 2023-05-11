@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 const Login = () => {
   const navigate = useNavigate();
   const { handleLogin, session } = useContext(AuthContext)
-  // console.log(session)
+
 
   type signUpFormValues = {
     email: string,

@@ -51,7 +51,7 @@ export type EventResult = {
         currency: string;
         min: number;
         max: number;
-    }
+    }[];
     _embedded: {
         venues: [{
             name: string;

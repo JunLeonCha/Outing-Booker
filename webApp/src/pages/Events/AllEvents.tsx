@@ -11,7 +11,7 @@ const EventResultView = () => {
     const navigate = useNavigate()
 
     const handleClickDetails = (id: string) => {
-        navigate(`/Evenement/${id}`)
+        navigate(`/evenement/${id}`)
     }
 
     useEffect(() => {
