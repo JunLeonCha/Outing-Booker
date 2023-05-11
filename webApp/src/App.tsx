@@ -16,15 +16,15 @@ function App() {
   // const title = window.location.pathname.split('/')
   const routes = [
     { path: "/", element: <Layout content={< Home />} title="Accueil" /> },
-    { path: "/Accueil", element: <Layout content={< Home />} title="Accueil" /> },
-    { path: "/Favoris", element: <Layout content={< Favoris />} title="Favoris" /> },
-    { path: "/Voyages", element: <Layout content={< Voyages />} title="Voyages" /> },
-    { path: "/Evenement/:id", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
-    { path: "/Evenements", element: <Layout content={< AllEvent />} title={"Evènements"} /> },
-    { path: "/Connexion", element: <Login /> },
-    { path: "/Inscription", element: <Register /> },
-    { path: "/Compte", element: <Layout content={< Account />} title="Compte" /> },
-    { path: "/Panier", element: <Layout content={< ShopingCard />} title="Panier" /> },
+    { path: "/accueil", element: <Layout content={< Home />} title="Accueil" /> },
+    { path: "/favoris", element: <Layout content={< Favoris />} title="Favoris" /> },
+    { path: "/voyages", element: <Layout content={< Voyages />} title="Voyages" /> },
+    { path: "/evenement/:id", element: <Layout content={< EventView />} arrowBack={<ArrowLeft />} /> },
+    { path: "/evenements", element: <Layout content={< AllEvent />} title={"Evènements"} /> },
+    { path: "/connexion", element: <Login /> },
+    { path: "/inscription", element: <Register /> },
+    { path: "/compte", element: <Layout content={< Account />} title="Compte" /> },
+    { path: "/panier", element: <Layout content={< ShopingCard />} title="Panier" /> },
     { path: "/*", element: <ERROR_404 /> },
   ];
 
