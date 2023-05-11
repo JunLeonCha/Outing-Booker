@@ -90,7 +90,7 @@ const NavBar = () => {
           <circle opacity="0.4" cx="12" cy="7" r="5" fill="#98A2B3" />
           <rect x="3" y="15" width="18" height="6" rx="3" fill="#98A2B3" />
         </svg>
-        Comptes
+        Compte
       </NavLink>
     </nav>
   );
