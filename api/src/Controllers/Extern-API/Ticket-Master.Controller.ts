@@ -1,5 +1,14 @@
 import { Response, Request } from "express"
 
+export const getEventForHome = async (req: Request, res: Response) => {
+    const result = await fetch("https://app.ticketmaster.com/discovery/v2/events?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*&size=3&sort=random&countryCode=FR")
+        .then(res => res.json())
+        .then(data => data._embedded.events)
+
+    return res.status(200).json(result)
+    console.log(result)
+}
+
 export const getAllEvent = async (req: Request, res: Response) => {
     const result = await fetch("https://app.ticketmaster.com/discovery/v2/events?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*&size=70&sort=relevance,desc&countryCode=FR")
         .then(res => res.json())

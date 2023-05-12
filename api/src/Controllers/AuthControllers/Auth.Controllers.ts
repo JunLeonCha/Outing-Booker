@@ -13,8 +13,8 @@ export const SignIn = async (req: Request, res: Response) => {
         );
         if (data?.session?.user) {
             const { access_token, user: { id, user_metadata } } = data.session;
-            const { email, firstname, lastname } = user_metadata ?? {};
-            res.json({ id, access_token, email, firstname, lastname });
+            const { password, ...user_data } = user_metadata ?? {};
+            res.json({ access_token, id, user_data });
         }
     } catch (error) {
         res.send(error)

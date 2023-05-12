@@ -6,23 +6,25 @@ import { EventResult } from "../../interfaces/ticketMaster";
 import { useAuth } from "../../context/AuthContext";
 
 const EventDetails = () => {
-  const { session } = useAuth()
+  const { session } = useAuth();
   const location = useLocation();
   const [eventResult, setEventResult] = useState<EventResult>();
-  const eventId = location.pathname.split("/")[2]
-  const pathname = location.pathname.split("/")[1]
-
-  // const date = (date: any) => {
-  //   const newDate = new Date(date)
-  //   return newDate
-  // }
+  const [messageError, setMessageError] = useState("");
+  const eventId = location.pathname.split("/")[2];
+  const pathname = location.pathname.split("/")[1];
 
   const handleSubmitBooking = async () => {
-    const res = await axios.post("/Booking/newBooking", {
-      id_user: session.id,
-      id_event: eventResult?.id
-    })
+    if (session) {
+      await axios.post("/booking/new-booking", {
+        id_user: session.id,
+        id_event: eventResult?.id
+      })
+    } else {
+      setMessageError("Une erreur est survenue")
+    }
   }
+
+  console.log(session)
 
   useEffect(() => {
     const getEvent = async () => {
@@ -33,84 +35,51 @@ const EventDetails = () => {
     getEvent()
   }, [pathname, eventId]);
   return (
-    <div className="info-event">
+    <>
       <img src={`${eventResult?.images[2].url}`} alt="" />
-      <div className="info-legend">
-        <h2>{eventResult?.name}</h2>
-        {eventResult?.dates.start.localDate}
-        <div>{eventResult?._embedded.venues[0].address.line1} - {eventResult?._embedded.venues[0].postalCode}</div>
-        <div>{eventResult?._embedded.venues[0].city.name}</div>
-        <div className="references">
-          <div>Catégorie: {eventResult?.classifications[0].segment.name}</div>
-          <div>Genre: {eventResult?.classifications[0].genre.name}</div>
-          <div>{eventResult?._embedded.venues[0].country.name}</div>
+      <div className="details">
+        <div className="details__header">
+          <h1>{eventResult?.name}</h1>
+          <div className="details__header_localisation">{eventResult?._embedded.venues[0].name}, {eventResult?._embedded.venues[0].address ? `${eventResult?._embedded.venues[0].address.line1}` : ""} {eventResult?._embedded.venues[0].postalCode}</div>
         </div>
-
-        {/* -------------------------------------------- */}
-        {/* Style brut dans la div suivante à en enlever */}
-
-        <div className="price-event" style={{ display: "flex", flexDirection: 'column' }}>
-          {eventResult?.priceRanges[0].min === eventResult?.priceRanges[0].max ?
-            <span>Prix:{eventResult?.priceRanges[0].max} {eventResult?.priceRanges[0].currency}</span>
-            :
-            <>
-              <span>Prix:{eventResult?.priceRanges[0].min} {eventResult?.priceRanges[0].currency}</span>
-              <span>Prix:{eventResult?.priceRanges[0].max} {eventResult?.priceRanges[0].currency}</span>
-            </>
-          }
-
-
+        <div className="details__tags">
+          <div className="details__tags_tag">{eventResult?.classifications[0].segment.name}</div>
+          <div className="details__tags_tag">{eventResult?.classifications[0].genre.name}</div>
+          <div className="details__tags_tag">{eventResult?._embedded.venues[0].country.name}</div>
         </div>
-        <button onClick={handleSubmitBooking}>Réserver</button>
-        <p>
-          Etape pour un départ de <span>Angers</span>
-        </p>
+        <div className="details__description">{eventResult?.description}
+        </div>
       </div>
-      <div className="info-travels">
-        <div className="travel">
-          <div className="info">
-            <h2>17h36 Train vers Paris</h2>
-            <div className="details">
-              <div>
-                <span>N°</span>
-                <span>49796</span>
-              </div>
-              <div>
-                <span>Départ</span>
-                <span>Angers - St Laud</span>
-              </div>
-              <div>
-                <span>Arrivé</span>
-                <span>Paris - Montpartnasse</span>
-              </div>
-              <div>
-                <span>Trajet</span>
-                <span>3h27</span>
-              </div>
+      <button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
+      <span>{messageError}</span>
+      <div className="steps">
+        <h2>Étapes pour un départ de <span>Angers</span></h2>
+        <div className="steps__list">
+          <div className="steps__list_step">
+            <h3>
+              <span>17 : 36</span>
+              <span>Train vers Paris</span>
+            </h3>
+            <div className="steps__list_step_details">
+              <span>N°</span>
+              <span>49796</span>
+              <span>Départ</span>
+              <span>Angers - St Laud</span>
+              <span>Arrivé</span>
+              <span>Paris - Montpartnasse</span>
+              <span>Trajet</span>
+              <span>3h27</span>
             </div>
-            <h2>17h36 Train vers Paris</h2>
-            <div className="details">
-              <div>
-                <span>N°</span>
-                <span>49796</span>
-              </div>
-              <div>
-                <span>Départ</span>
-                <span>Angers - St Laud</span>
-              </div>
-              <div>
-                <span>Arrivé</span>
-                <span>Paris - Montpartnasse</span>
-              </div>
-              <div>
-                <span>Trajet</span>
-                <span>3h27</span>
-              </div>
-            </div>
+          </div>
+          <div className="steps__list_step steps__list_step--arrived">
+            <h3>
+              <span>23 : 02</span>
+              <span>Arrivé à destination</span>
+            </h3>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,14 +1,12 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-	const navigate = useNavigate();
-	const {handleLogin, session} = useContext(AuthContext)
 
+	// eslint-disable-next-line
+	const { handleLogin, session } = useContext(AuthContext)
 
 	type signUpFormValues = {
 		email: string,
@@ -17,20 +15,15 @@ const Login = () => {
 
 	const handleFormSubmit = async (values: signUpFormValues) => {
 		try {
-			const res = await handleLogin(values)
+			await handleLogin(values)
 		} catch (error) {
 			console.log(error);
 		}
-
 	}
 	const connexionFields = [
-		{name: "email", type: "email", placeholder: "toto@gmail.com"},
-		{name: "password", type: "password", placeholder: "xxxxxxxxxxx"},
+		{ name: "email", type: "email", placeholder: "toto@gmail.com" },
+		{ name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
 	];
-
-	// const handleSubmit = async () => {
-	//   axios.post("/")
-	// };
 
 	return (
 		<div className="auth-login">

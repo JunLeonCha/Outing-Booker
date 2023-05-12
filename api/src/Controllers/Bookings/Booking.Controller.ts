@@ -4,29 +4,22 @@ import supabase from "../../db.js"
 export const newBooking = async (req: Request, res: Response) => {
     try {
         const {
-            name,
-            city, country,
-            postal_code,
-            date_start,
-            category,
-            prices
+            id_user,
+            id_event
         } = req.body
 
-        const { error } = await
+        const insert = await
             supabase
                 .from("bookings")
                 .insert({
-                    name: name,
-                    city: city,
-                    country: country,
-                    date_start: date_start,
-                    postal_code: postal_code,
-                    category: category,
-                    prices: prices
-                })
+                    id_user: id_user,
+                    id_event: id_event,
+                }).select("*")
 
-        return res.status(200).send("La réservation à été faite")
+        console.log(insert);
+
+        return res.status(201).send("La réservation à été faite")
     } catch (err) {
-
+        return res.status(500).send("Une Erreur est survenue")
     }
 }

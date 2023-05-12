@@ -9,7 +9,7 @@ const Header = ({ title, arrowBack }: { title?: string, arrowBack?: any }) => {
 	const pathname = location.pathname.split("/")[1]
 
 	return (
-		<header className={pathname == "evenement" ? "event" : ""}>
+		<header className={pathname === "evenement" || "Evenemet" ? "event" : ""}>
 			<div className="title">
 				<h1>{title}</h1>
 				<div className="title__back" onClick={() => navigate(-1)}>
