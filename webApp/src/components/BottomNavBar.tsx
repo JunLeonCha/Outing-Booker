@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/scss/components/_navBar.scss";
 
-const NavBar = () => {
+const BottomNavBar = () => {
   return (
     <nav>
       <NavLink to="/" className={(props) => props.isActive ? "active-link" : ""}>
@@ -96,4 +96,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default BottomNavBar;

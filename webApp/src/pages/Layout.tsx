@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import Header from '../components/Header';
-import NavBar from '../components/NavBar';
+import BottomNavBar from '../components/BottomNavBar';
 
 interface LayoutProps {
 	content: ReactNode;
@@ -40,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ content, title, arrowBack, className })
 					<div className={`${className} layout`}>
 						{content}
 					</div>
-					<NavBar />
+					<BottomNavBar />
 				</>
 			)}
 
