@@ -27,7 +27,7 @@ function App() {
 		{path: "/Connexion", element: <Login/>},
 		{path: "/Inscription", element: <Register/>},
 		{path: "/Compte", element: <Layout content={< Account/>} title="Compte" className="account"/>},
-		{path: "/Panier", element: <Layout content={< ShopingCard/>} title="Panier"/>},
+		{path: "/Panier", element: <Layout content={< ShopingCard/>} title="Panier" className="cart"/>},
 		{path: "/*", element: <ERROR_404/>},
 	];
 
