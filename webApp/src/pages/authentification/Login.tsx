@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
 
+	const [errorMessage, setErrorMessage] = useState(String);
 	// eslint-disable-next-line
 	const { handleLogin, session } = useContext(AuthContext)
 
@@ -17,7 +18,7 @@ const Login = () => {
 		try {
 			await handleLogin(values)
 		} catch (error) {
-			console.log(error);
+			setErrorMessage("Utilisateur ou mot de passe incorrect")
 		}
 	}
 	const connexionFields = [
@@ -37,6 +38,9 @@ const Login = () => {
 					textButton={"Se connecter"}
 				/>
 			</div>
+			{errorMessage && (
+				<div>{errorMessage}</div>
+			)}
 			<a href="/">Retour</a>
 		</div>
 	);

@@ -18,6 +18,8 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     } else {
       return
     }
+
+    console.log(sessionData);
   }, []);
 
   const handleLogin = async (values: object) => {

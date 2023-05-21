@@ -12,7 +12,7 @@ const Inputs = () => {
             style={styles.input}
             onChangeText={handleChange}
             value={searchValue}
-            placeholder="useless placeholder"
+            placeholder="Rechercher"
         />
     );
 };

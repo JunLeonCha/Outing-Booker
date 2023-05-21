@@ -4,11 +4,11 @@ import { getEventForHome } from './../../Controllers/Extern-API/Ticket-Master.Co
 
 const router = express.Router()
 
-router.get("/Ticket-Master/home-event", getEventForHome)
-router.get("/Ticket-Master/All-Event", getAllEvent)
-router.get("/Ticket-Master/getEventById/:id", getEventById)
-router.get("/Ticket-Master/Art-Event", getArtEvent)
-router.get("/Ticket-Master/Music-Event", getMusicEvent)
-router.get("/Ticket-Master/Sport-Event", getSportEvent)
+router.get("/ticket-master/home-event", getEventForHome)
+router.get("/ticket-master/events", getAllEvent)
+router.get("/ticket-master/events/:id", getEventById)
+router.get("/ticket-master/events/arts", getArtEvent)
+router.get("/ticket-master/events/musics", getMusicEvent)
+router.get("/ticket-master/events/sports", getSportEvent)
 
 export default router;

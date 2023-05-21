@@ -2,6 +2,9 @@ import { Request, Response } from "express"
 import supabase from "../../db.js"
 
 export const newBooking = async (req: Request, res: Response) => {
+
+    await supabase.auth.getUser(req.params.access_token).then()
+    
     try {
         const {
             id_user,

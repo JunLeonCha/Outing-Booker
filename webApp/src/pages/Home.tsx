@@ -54,12 +54,11 @@ const Home = () => {
 				<h2>Évènements</h2>
 				<div className="cards-row__list">
 					{homeEvents.map((homeEvent: EventResult) => (
-						<>
-							<div key={homeEvent.id} className="cards-row__list_card">
-								<img onClick={() => handleClickDetails(homeEvent.id)} src={homeEvent.images[2].url} alt="" />
-								<h3>{homeEvent.name}</h3>
-							</div>
-						</>
+						<div key={homeEvent.id} className="cards-row__list_card">
+							<img onClick={() => handleClickDetails(homeEvent.id)} src={homeEvent.images[2].url} alt="" />
+							<h3>{homeEvent.name}</h3>
+						</div>
+
 					))}
 				</div>
 			</div>

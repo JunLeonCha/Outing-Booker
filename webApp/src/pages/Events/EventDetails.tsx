@@ -9,9 +9,9 @@ const EventDetails = () => {
   const { session } = useAuth();
   const location = useLocation();
   const [eventResult, setEventResult] = useState<EventResult>();
+  const [journey, setJourneysResults] = useState([]);
   const [messageError, setMessageError] = useState("");
-  const eventId = location.pathname.split("/")[2];
-  const pathname = location.pathname.split("/")[1];
+
 
   const handleSubmitBooking = async () => {
     if (session) {
@@ -27,20 +27,30 @@ const EventDetails = () => {
   console.log(session)
 
   useEffect(() => {
-    const getEvent = async () => {
-      const res = await axios.get(`/extern-api/Ticket-Master/getEventById/${eventId}`)
-      setEventResult(res.data)
-    }
+    let eventId = location.pathname.split("/")[2];
+    // let pathname = location.pathname.split("/")[1];
 
+    const getEvent = async () => {
+      await axios.get(`/extern-api/Ticket-Master/getEventById/${eventId}`).then((res) => {
+        setEventResult(res.data)
+      })
+    }
     getEvent()
-  }, [pathname, eventId]);
+  }, []);
+
+  const dateStart = eventResult?.dates.start.dateTime.replace("Z", "").split('T')[0];
+  console.log(dateStart)
   return (
     <>
       <img src={`${eventResult?.images[2].url}`} alt="" />
       <div className="details">
         <div className="details__header">
           <h1>{eventResult?.name}</h1>
-          <div className="details__header_localisation">{eventResult?._embedded.venues[0].name}, {eventResult?._embedded.venues[0].address ? `${eventResult?._embedded.venues[0].address.line1}` : ""} {eventResult?._embedded.venues[0].postalCode}</div>
+          <div className="details__header_localisation">
+            {`${eventResult?._embedded.venues[0].name}, 
+            ${eventResult?._embedded.venues[0].city.name} 
+            ${eventResult?._embedded.venues[0].address ? eventResult?._embedded.venues[0].address.line1 : ""}`}
+          </div>
         </div>
         <div className="details__tags">
           <div className="details__tags_tag">{eventResult?.classifications[0].segment.name}</div>
