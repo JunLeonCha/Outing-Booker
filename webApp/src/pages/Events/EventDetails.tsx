@@ -51,15 +51,17 @@ const EventDetails = () => {
 
 
   useEffect(() => {
-    if (eventResult) {
+    if (eventResult && session) {
       const getTrain = async () => {
         axios.get(`/extern-api/sncf/base_departure_arrived?local_city=${session.user_data.postal_code}&event_city=${eventResult?._embedded.venues[0]?.postalCode}&departure_date=${eventResult?.dates.start.localDate}`).then((res) => {
           setJourneysResults(res.data)
         })
       }
       getTrain()
+    } else {
+      setJourneysResults(undefined)
     }
-  }, [eventResult, session.user_data.postal_code])
+  }, [eventResult, session])
 
   console.log(journey)
 
@@ -92,28 +94,38 @@ const EventDetails = () => {
         <div className="steps__list">
           <div className="steps__list_step">
             <h3>
+              {journey ? newFunctions.getFormattedJourneyInfo(journey) : ""}
               <span>
-                {journey ? newFunctions.getFormattedJourneyInfo(journey) : ""}
               </span>
               {/* <span>Train de {journey?.journeys ? journey.journeys[0].sections[1].from.name : ""} vers {journey?.journeys ? journey.journeys[0].sections[1].to.name : ""}</span> */}
             </h3>
-            <div className="steps__list_step_details">
-              <span>N°</span>
-              <span>49796</span>
-              <span>Départ</span>
-              <span>Angers - St Laud</span>
-              <span>Arrivé</span>
-              <span>Paris - Montpartnasse</span>
-              <span>Trajet</span>
-              <span>3h27</span>
-            </div>
+            {journey && !journey.error && journey.journeys ? (
+              <div className="steps__list_step_details">
+                <span>N°</span>
+                <span>49796</span>
+                <span>Départ</span>
+                <span>Angers - St Laud</span>
+                <span>Arrivé</span>
+                <span>Paris - Montparnasse</span>
+                <span>Trajet</span>
+                <span>3h27</span>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {journey && journey.error ? (
+              <div className="steps__list_step steps__list_step--arrived">
+                <h3>
+                  <span>23:02</span>
+                  <span>Arrivé à destination</span>
+                </h3>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          <div className="steps__list_step steps__list_step--arrived">
-            <h3>
-              <span>23 : 02</span>
-              <span>Arrivé à destination</span>
-            </h3>
-          </div>
+
         </div>
       </div>
     </>
