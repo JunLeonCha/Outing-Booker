@@ -21,12 +21,10 @@ class GenericFunctions {
 
     getFormattedJourneyInfo(journey: sncfInterface) {
         const arrivalDateTime = journey?.journeys?.[0]?.arrival_date_time;
-        const fromName = journey?.journeys?.[0]?.sections?.[1]?.from?.name;
-        const toName = journey?.journeys?.[0]?.sections?.[1]?.to?.name;
 
-        if (arrivalDateTime && fromName && toName) {
+        if (arrivalDateTime) {
             const formattedDate = this.newDateParse(arrivalDateTime).toString();
-            return `${formattedDate} ${fromName} vers ${toName}`;
+            return `${formattedDate} ${journey.journeys[0].sections[1].display_informations.commercial_mode}`;
         } else {
             return "Le trajet n'a pas encore été défini";
         }
@@ -39,6 +37,13 @@ class GenericFunctions {
         } else {
             return `Étapes pour un départ de ${paramsLocalCity}`
         }
+    }
+
+    formatHoursFromSeconds(totalSeconds: number) {
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+        return `${hours}h${minutes}`;
     }
 
     newDateParse(dateParams: string | any) {

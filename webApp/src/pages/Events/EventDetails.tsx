@@ -104,13 +104,13 @@ const EventDetails = () => {
 
               <div className="steps__list_step_details">
                 <span>N°</span>
-                <span>49796</span>
+                <span>{journey.journeys[0].sections[1].display_informations.headsign}</span>
                 <span>Départ</span>
-                <span>Angers - St Laud</span>
+                <span>{journey?.journeys[0].sections[1].from.name}</span>
                 <span>Arrivé</span>
-                <span>Paris - Montparnasse</span>
+                <span>{journey?.journeys[0].sections[1].to.name}</span>
                 <span>Trajet</span>
-                <span>3h27</span>
+                <span>{newFunctions.formatHoursFromSeconds(journey.journeys[0].duration)}</span>
               </div>
               {journey && journey.error ? (
                 <div className="steps__list_step steps__list_step--arrived">
