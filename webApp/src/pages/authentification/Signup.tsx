@@ -1,24 +1,31 @@
-import React from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
 import axios from "axios";
+import { useState } from 'react';
 
 const Signup = () => {
-
+	const [errorSignUp, setErrorSignUp] = useState<string>();
 	interface signUpFormValues {
 		firstname: string,
 		lastname: string,
 		email: string,
 		password: string
+		confirm_password: string
 	}
 
 	function handleFormSubmit(values: signUpFormValues) {
 		console.log(values);
-		axios.post("/user/signup", values).then((res) => {
-			if (res.status === 200) {
-				window.location.assign("/")
-			}
-		})
+		if (values.password === values.confirm_password) {
+			axios.post("/user/signup", values).then((res) => {
+				if (res.status === 200) {
+					window.location.assign("/")
+				} else {
+					setErrorSignUp(res.data.message)
+				}
+			})
+		} else {
+			setErrorSignUp("Les mot de passe ne correspondent pas");
+		}
 	}
 
 	const registerFields = [
@@ -32,6 +39,7 @@ const Signup = () => {
 	return (
 		<div className="auth-register">
 			<h1>LOGO</h1>
+			{errorSignUp && <p className="auth-register__error">{errorSignUp}</p>}
 			<div className="auth-register__form">
 				<h1>S'inscrire</h1>
 				<DynamicForm
