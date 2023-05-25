@@ -1,14 +1,13 @@
 import express from "express"
-import { getAllEvent, getArtEvent, getEventById, getMusicEvent, getSportEvent } from "../../Controllers/Extern-API/Ticket-Master.Controller";
-import { getEventForHome } from './../../Controllers/Extern-API/Ticket-Master.Controller';
+import TkMaster from "../../Controllers/Extern-API/Ticket-Master.Controller";
 
 const router = express.Router()
-
-router.get("/ticket-master/home-event", getEventForHome)
-router.get("/ticket-master/events", getAllEvent)
-router.get("/ticket-master/events/:id", getEventById)
-router.get("/ticket-master/events/arts", getArtEvent)
-router.get("/ticket-master/events/musics", getMusicEvent)
-router.get("/ticket-master/events/sports", getSportEvent)
+const TicketMaster = new TkMaster();
+router.get("/ticket-master/home-event", TicketMaster.getEventForHome)
+router.get("/ticket-master/events", TicketMaster.getAllEvent)
+router.get("/ticket-master/events/:id", TicketMaster.getEventById)
+router.get("/ticket-master/events/arts", TicketMaster.getArtEvent)
+router.get("/ticket-master/events/musics", TicketMaster.getMusicEvent)
+router.get("/ticket-master/events/sports", TicketMaster.getSportEvent)
 
 export default router;
