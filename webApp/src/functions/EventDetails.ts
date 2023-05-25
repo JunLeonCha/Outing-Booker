@@ -3,6 +3,8 @@ import { EventResult } from "../interfaces/ticketMaster";
 
 class GenericFunctions {
 
+
+
     getFormattedDateEvent(event: EventResult) {
         const date = new Date(event?.dates.start.dateTime);
         const day = String(date.getDate()).padStart(2, '0');
@@ -61,6 +63,18 @@ class GenericFunctions {
 
     padZero(value: number) {
         return value.toString().padStart(2, '0');
+    }
+
+    convertToTimestampz(dateString: string) {
+        const year = dateString.slice(0, 4);
+        const month = dateString.slice(4, 6);
+        const day = dateString.slice(6, 8);
+        const hours = dateString.slice(9, 11);
+        const minutes = dateString.slice(11, 13);
+        const seconds = dateString.slice(13, 15);
+
+        const timestampz = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000+00:00`;
+        return timestampz;
     }
 }
 

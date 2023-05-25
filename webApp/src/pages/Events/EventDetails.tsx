@@ -6,6 +6,7 @@ import { EventResult } from "../../interfaces/ticketMaster";
 import { useAuth } from "../../context/AuthContext";
 import { sncfInterface } from "../../interfaces/SNCF";
 import EventFunctions from "../../functions/EventDetails";
+import { spawn } from "child_process";
 
 const EventDetails = () => {
   const newFunctions = new EventFunctions()
@@ -13,7 +14,8 @@ const EventDetails = () => {
   const location = useLocation();
   const [eventResult, setEventResult] = useState<EventResult>();
   const [journey, setJourneysResults] = useState<sncfInterface>();
-  const [messageError, setMessageError] = useState("");
+  const [messageError, setMessageError] = useState<string>();
+  const [messageSuccess, setMessageSuccess] = useState<string>();
 
   const handleSubmitBooking = async () => {
 
@@ -26,11 +28,13 @@ const EventDetails = () => {
         event_city: eventResult?._embedded.venues[0]?.city?.name,
         event_address: eventResult?._embedded.venues[0]?.address.line1,
         event_postal_code: eventResult?._embedded.venues[0]?.postalCode,
-        departure_travel: session.user_data.city,
-        arrived_travel: journey ? journey : undefined
+        identifier: journey?.journeys[0]?.sections[1].display_informations?.headsign,
+        departure_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.departure_date_time) : "",
+        arrived_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.arrival_date_time) : ""
       }
-      console.log(data)
-      // await axios.post("/booking/make_reservation", data)
+      axios.post("/booking/make_reservation", data).then(() => {
+        setMessageSuccess("La réservation a été enregistrée avec succès");
+      })
     } else {
       setMessageError("Une erreur est survenue")
     }
@@ -87,10 +91,13 @@ const EventDetails = () => {
         <div className="details__description">{eventResult?.description}
         </div>
       </div>
-      <button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
+      {messageSuccess && (
+        <span>{messageSuccess}</span>
+      )}
       {messageError && (
         <span>{messageError}</span>
       )}
+      <button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
       {journey && !journey.error && journey.journeys && (
         <div className="steps">
           <h2>{journey ? newFunctions.messageStepFromLocalCity(session.user_data.city) : " "}</h2>

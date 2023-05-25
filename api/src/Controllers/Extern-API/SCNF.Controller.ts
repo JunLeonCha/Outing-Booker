@@ -50,7 +50,7 @@ class SNCF {
             if (response.ok) {
                 const data = await response.json();
                 const { places } = data;
-                // console.log(places)
+                console.log(places)
 
                 // Extract id and name from places and create idAdmin objects
                 const idAdminObjects = places.map((place: any) => {

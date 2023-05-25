@@ -2,26 +2,26 @@
   {
     "id": 1,
     "title": "Concert",
-    "img": "../images/concert.png"
+    "img": "images/concert.png"
   },
   {
     "id": 2,
     "title": "Culture",
-    "img": "../images/culture.jpg"
+    "img": "images/culture.png"
   },
   {
     "id": 3,
     "title": "Hobbies",
-    "img": "../images/hobbies.jpg"
+    "img": "images/hobbie.png"
   },
   {
     "id": 4,
     "title": "Seminaire",
-    "img": "../images/seminaire.png"
+    "img": "images/seminaire.png"
   },
   {
     "id": 5,
     "title": "Nature",
-    "img": "../images/nature"
+    "img": "images/nature.png"
   }
 ]
