@@ -14,15 +14,19 @@ const Signup = () => {
 
 	function handleFormSubmit(values: signUpFormValues) {
 		console.log(values);
-		axios.post("/user/signup", values);
+		axios.post("/user/signup", values).then((res) => {
+			if (res.status === 200) {
+				window.location.assign("/")
+			}
+		})
 	}
 
 	const registerFields = [
-		{name: "firstname", type: "text", placeholder: "John"},
-		{name: "lastname", type: "text", placeholder: "Doe"},
-		{name: "email", type: "email", placeholder: "toto@gmail.com"},
-		{name: "password", type: "password", placeholder: "xxxxxxxxxxx"},
-		{name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx"},
+		{ name: "firstname", type: "text", placeholder: "John" },
+		{ name: "lastname", type: "text", placeholder: "Doe" },
+		{ name: "email", type: "email", placeholder: "toto@gmail.com" },
+		{ name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
+		{ name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx" },
 	];
 
 	return (
