@@ -16,7 +16,7 @@ const EventResultView = () => {
 
     useEffect(() => {
         const allEvents = async () => {
-            const resultsEvent = await axios.get("/extern-api/Ticket-Master/All-Event/");
+            const resultsEvent = await axios.get("/extern-api/ticket-master/events/");
             setEventsResult(resultsEvent.data);
         }
         allEvents();

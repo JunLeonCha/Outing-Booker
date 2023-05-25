@@ -30,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ content, title, arrowBack, className })
 			{!isMobile ? (
 				<>
 					<Header title={title} arrowBack={arrowBack} />
-					<div className={`${className} layout`}>
+					<div className={`${className} desktop layout`}>
 						{content}
 					</div>
 				</>

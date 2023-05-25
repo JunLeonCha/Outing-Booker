@@ -10,6 +10,7 @@ const Home = () => {
 
 	const navigate = useNavigate()
 	const [homeEvents, setHomeEvents] = useState<EventResult[]>([])
+	const [cardCount, setCardCount] = useState<number>(5)
 
 	const handleClickDetails = (id: string) => {
 		navigate(`/evenement/${id}`)
@@ -22,13 +23,25 @@ const Home = () => {
 			setHomeEvents(event.data)
 		}
 		getEvent()
+		const handleResize = () => {
+			const count = window.innerWidth < 700 ? 3 : 5;
+			setCardCount(count);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	}, [])
 
 	return (
 		<>
-			<div className="searchBar">
-				<Search color="#475467" size="24" />
-				<input type="text" placeholder="Rechercher" />
+			<div className="searchBar-content">
+				<div className="searchBar">
+					<Search color="#475467" size="24" />
+					<input type="text" placeholder="Rechercher" />
+				</div>
 			</div>
 			<div className="cards-row cards-row--categories">
 				<h2>Categories</h2>
@@ -53,12 +66,11 @@ const Home = () => {
 			<div className="cards-row">
 				<h2>Évènements</h2>
 				<div className="cards-row__list">
-					{homeEvents.map((homeEvent: EventResult) => (
+					{homeEvents.slice(0, cardCount).map((homeEvent: EventResult) => (
 						<div key={homeEvent.id} className="cards-row__list_card">
 							<img onClick={() => handleClickDetails(homeEvent.id)} src={homeEvent.images[2].url} alt="" />
 							<h3>{homeEvent.name}</h3>
 						</div>
-
 					))}
 				</div>
 			</div>
