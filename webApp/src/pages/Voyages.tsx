@@ -10,9 +10,8 @@ const Voyages = () => {
 				</div>
 				<div className="feeds">
 					<div className="events">
-						<h2></h2>
 						<div className="event">
-							<img src="" alt=""/>
+							<img src="" alt="" />
 							<p></p>
 						</div>
 					</div>

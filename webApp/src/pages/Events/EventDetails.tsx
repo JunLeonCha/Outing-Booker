@@ -8,7 +8,7 @@ import { sncfInterface } from "../../interfaces/SNCF";
 import EventFunctions from "../../functions/EventDetails";
 
 const EventDetails = () => {
-  const newFunctions = EventFunctions
+  const newFunctions = new EventFunctions()
   const { session } = useAuth();
   const location = useLocation();
   const [eventResult, setEventResult] = useState<EventResult>();
@@ -47,7 +47,7 @@ const EventDetails = () => {
 
     getEvent()
 
-  }, []);
+  }, [location.pathname]);
 
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const EventDetails = () => {
       }
       getTrain()
     }
-  }, [eventResult])
+  }, [eventResult, session.user_data.postal_code])
 
   console.log(journey)
 

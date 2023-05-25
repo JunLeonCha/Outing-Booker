@@ -2,7 +2,6 @@ import { sncfInterface } from "../interfaces/SNCF";
 import { EventResult } from "../interfaces/ticketMaster";
 
 class GenericFunctions {
-    constructor() { }
 
     getFormattedDateEvent(event: EventResult) {
         const date = new Date(event?.dates.start.dateTime);
@@ -60,4 +59,4 @@ class GenericFunctions {
     }
 }
 
-export default new GenericFunctions();
+export default GenericFunctions;

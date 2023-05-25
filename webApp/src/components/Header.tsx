@@ -63,10 +63,10 @@ const Header = ({title, arrowBack}: { title?: string, arrowBack?: any }) => {
 					Panier
 				</NavLink>
 				{session != null &&
-					<a onClick={handleLogout} style={{ display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}>
+					<button onClick={handleLogout} style={{ display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}>
 						<LogOutIcon style={{ color: "4E5A6A" }} />
 						<span style={{ color: "white" }}>Déconnexion</span>
-					</a>
+					</button>
 				}
 			</div>
 		</header>
