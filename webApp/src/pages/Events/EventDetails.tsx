@@ -88,18 +88,20 @@ const EventDetails = () => {
         </div>
       </div>
       <button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
-      <span>{messageError}</span>
-      <div className="steps">
-        <h2>{journey ? newFunctions.messageStepFromLocalCity(session.user_data.city) : " "}</h2>
-        <div className="steps__list">
-          <div className="steps__list_step">
-            <h3>
-              {journey ? newFunctions.getFormattedJourneyInfo(journey) : ""}
-              <span>
-              </span>
-              {/* <span>Train de {journey?.journeys ? journey.journeys[0].sections[1].from.name : ""} vers {journey?.journeys ? journey.journeys[0].sections[1].to.name : ""}</span> */}
-            </h3>
-            {journey && !journey.error && journey.journeys ? (
+      {messageError && (
+        <span>{messageError}</span>
+      )}
+      {journey && !journey.error && journey.journeys && (
+        <div className="steps">
+          <h2>{journey ? newFunctions.messageStepFromLocalCity(session.user_data.city) : " "}</h2>
+          <div className="steps__list">
+            <div className="steps__list_step">
+              <h3>
+                {journey ? newFunctions.getFormattedJourneyInfo(journey) : ""}
+                <span>
+                </span>
+              </h3>
+
               <div className="steps__list_step_details">
                 <span>N°</span>
                 <span>49796</span>
@@ -110,24 +112,20 @@ const EventDetails = () => {
                 <span>Trajet</span>
                 <span>3h27</span>
               </div>
-            ) : (
-              ""
-            )}
-
-            {journey && journey.error ? (
-              <div className="steps__list_step steps__list_step--arrived">
-                <h3>
-                  <span>23:02</span>
-                  <span>Arrivé à destination</span>
-                </h3>
-              </div>
-            ) : (
-              ""
-            )}
+              {journey && journey.error ? (
+                <div className="steps__list_step steps__list_step--arrived">
+                  <h3>
+                    <span>23:02</span>
+                    <span>Arrivé à destination</span>
+                  </h3>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
-
         </div>
-      </div>
+      )}
     </>
   );
 };
