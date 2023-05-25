@@ -1,4 +1,7 @@
 export type sncfInterface = {
+    error: {
+        message: string
+    }
     journeys: {
         arrival_date_time: string;
         departure_date_time: string;

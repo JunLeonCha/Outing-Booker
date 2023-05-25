@@ -18,13 +18,12 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
     } else {
       return
     }
-
-    console.log(sessionData);
   }, []);
 
   const handleLogin = async (values: object) => {
     const res = await axios.post('/user/signIn', values);
     const data = res.data
+    console.log(data);
     setSession(data);
     sessionStorage.setItem('session', JSON.stringify(data));
     window.location.assign("/")
