@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import "../../assets/scss/pages/_eventDetail.scss";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import axios from "axios";
-import { EventResult } from "../../interfaces/ticketMaster";
-import { useAuth } from "../../context/AuthContext";
-import { sncfInterface } from "../../interfaces/SNCF";
+import {EventResult} from "../../interfaces/ticketMaster";
+import {useAuth} from "../../context/AuthContext";
+import {sncfInterface} from "../../interfaces/SNCF";
 import EventFunctions from "../../functions/EventDetails";
 import { spawn } from "child_process";
 
@@ -17,7 +17,7 @@ const EventDetails = () => {
   const [messageError, setMessageError] = useState<string>();
   const [messageSuccess, setMessageSuccess] = useState<string>();
 
-  const handleSubmitBooking = async () => {
+	const handleSubmitBooking = async () => {
 
 
     if (session) {
@@ -40,43 +40,44 @@ const EventDetails = () => {
     }
   }
 
-  useEffect(() => {
-    let eventId = location.pathname.split("/")[2];
+	useEffect(() => {
+		let eventId = location.pathname.split("/")[2];
 
-    const getEvent = async () => {
-      await axios.get(`/extern-api/Ticket-Master/events/${eventId}`).then((res) => {
-        setEventResult(res.data)
-      })
-    }
+		const getEvent = async () => {
+			await axios.get(`/extern-api/Ticket-Master/events/${eventId}`).then((res) => {
+				setEventResult(res.data)
+			})
+		}
 
-    getEvent()
+		getEvent()
 
-  }, [location.pathname]);
+	}, [location.pathname]);
 
 
-  useEffect(() => {
-    if (eventResult && session) {
-      const getTrain = async () => {
-        axios.get(`/extern-api/sncf/base_departure_arrived?local_city=${session.user_data.postal_code}&event_city=${eventResult?._embedded.venues[0]?.postalCode}&departure_date=${eventResult?.dates.start.localDate}`).then((res) => {
-          setJourneysResults(res.data)
-        })
-      }
-      getTrain()
-    } else {
-      setJourneysResults(undefined)
-    }
-  }, [eventResult, session])
+	useEffect(() => {
+		if (eventResult && session) {
+			const getTrain = async () => {
+				axios.get(`/extern-api/sncf/base_departure_arrived?local_city=${session.user_data.postal_code}&event_city=${eventResult?._embedded.venues[0]?.postalCode}&departure_date=${eventResult?.dates.start.localDate}`).then((res) => {
+					setJourneysResults(res.data)
+				})
+			}
+			getTrain()
+		} else {
+			setJourneysResults(undefined)
+		}
+	}, [eventResult, session])
 
-  console.log(journey)
+	console.log(journey)
 
-  return (
-    <>
-      <img src={`${eventResult?.images[2].url}`} alt="" />
-      <div className="details">
-        <div className="details__header">
-          <h1>{eventResult?.name}</h1>
-          <div className="details__header_localisation">
-            {`${eventResult?._embedded.venues[0].name}, 
+	return (
+		<>
+			<img src={`${eventResult?.images[2].url}`} alt=""/>
+			<div className="eventDetails__content">
+				<div className="details">
+					<div className="details__header">
+						<h1>{eventResult?.name}</h1>
+						<div className="details__header_localisation">
+							{`${eventResult?._embedded.venues[0].name}, 
             ${eventResult?._embedded.venues[0].city.name} 
             ${eventResult?._embedded.venues[0]?.postalCode}
             ${eventResult?._embedded.venues[0].address ? eventResult?._embedded.venues[0].address.line1 : ""}`}
@@ -109,32 +110,33 @@ const EventDetails = () => {
                 </span>
               </h3>
 
-              <div className="steps__list_step_details">
-                <span>N°</span>
-                <span>{journey.journeys[0].sections[1].display_informations.headsign}</span>
-                <span>Départ</span>
-                <span>{journey?.journeys[0].sections[1].from.name}</span>
-                <span>Arrivé</span>
-                <span>{journey?.journeys[0].sections[1].to.name}</span>
-                <span>Trajet</span>
-                <span>{newFunctions.formatHoursFromSeconds(journey.journeys[0].duration)}</span>
-              </div>
-              {journey && journey.error ? (
-                <div className="steps__list_step steps__list_step--arrived">
-                  <h3>
-                    <span>23:02</span>
-                    <span>Arrivé à destination</span>
-                  </h3>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
+								<div className="steps__list_step_details">
+									<span>N°</span>
+									<span>{journey.journeys[0].sections[1].display_informations.headsign}</span>
+									<span>Départ</span>
+									<span>{journey?.journeys[0].sections[1].from.name}</span>
+									<span>Arrivé</span>
+									<span>{journey?.journeys[0].sections[1].to.name}</span>
+									<span>Trajet</span>
+									<span>{newFunctions.formatHoursFromSeconds(journey.journeys[0].duration)}</span>
+								</div>
+								{journey && journey.error ? (
+									<div className="steps__list_step steps__list_step--arrived">
+										<h3>
+											<span>23:02</span>
+											<span>Arrivé à destination</span>
+										</h3>
+									</div>
+								) : (
+									""
+								)}
+							</div>
+						</div>
+					</div>
+				)}
+			</div>
+		</>
+	);
 };
 
 export default EventDetails;

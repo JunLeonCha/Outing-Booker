@@ -7,129 +7,150 @@
 
 .eventDetails {
   img {
+    display: block;
     width: 100%;
     height: 300px;
     object-fit: cover;
   }
 
-  .details {
+  &__content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 24px;
+    gap: 24px;
 
-    &__header {
+    .details {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-
-      h1 {
-        font-family: PPEiko, sans-serif;
-        font-weight: 900;
-        font-size: 1.5rem;
-        margin: 0;
-      }
-
-      &_localisation {
-        font-size: 0.875rem;
-        color: $Gray400;
-      }
-    }
-
-    &__tags {
-      display: flex;
-      align-items: center;
       gap: 16px;
+      padding: 24px;
 
-      &_tag {
-        padding: 6px 10px;
-        border-radius: 24px;
-        background: $Gray200;
-        font-size: 0.75rem;
-      }
-    }
+      &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
-    &__description {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
-  }
-
-  .book {
-    all: unset;
-    width: calc(100% - 48px);
-    height: 48px;
-    background: $Primary500;
-    color: $White;
-    border-radius: 8px;
-    margin: 8px 24px;
-    text-align: center;
-    font-family: PPEiko, sans-serif;
-    font-size: 1.125rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-  }
-
-  .steps {
-    padding: 24px;
-
-    h2 {
-      font-size: 1rem;
-      font-weight: 400;
-      margin: 0;
-
-      span {
-        color: $Primary500;
-      }
-    }
-
-    &__list {
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 48px;
-      padding: 24px 0 24px 24px;
-      border-left: 1px solid $Gray300;
-
-      &_step {
-        h3 {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          margin: 0 0 16px 0;
-          font-size: 1rem;
-          font-weight: 900;
+        h1 {
           font-family: PPEiko, sans-serif;
+          font-weight: 900;
+          font-size: 1.5rem;
+          margin: 0;
         }
 
-        &_details {
-          border-radius: 8px;
-          background: $Gray100;
-          padding: 16px;
-          display: grid;
-          gap: 16px;
-          grid-template-columns: auto 1fr;
-
-          span {
-            font-size: 0.875rem;
-          }
-
-          span:nth-child(odd) {
-            color: $Gray400;
-          }
-
-          span:nth-child(even) {
-            text-align: right;
-          }
+        &_localisation {
+          font-size: 0.875rem;
+          color: $Gray400;
         }
+      }
 
-        &--arrived {
+      &__tags {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        &_tag {
+          padding: 6px 10px;
+          border-radius: 24px;
+          background: $Gray200;
+          font-size: 0.75rem;
+        }
+      }
+
+      &__description {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+    }
+
+    .book {
+      all: unset;
+      width: 100%;
+      height: 48px;
+      background: $Primary500;
+      color: $White;
+      border-radius: 8px;
+      margin: 8px 0;
+      text-align: center;
+      font-family: PPEiko, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .steps {
+      padding: 24px;
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0;
+
+        span {
+          color: $Primary500;
+        }
+      }
+
+      &__list {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        padding: 24px 0 24px 24px;
+        border-left: 1px solid $Gray300;
+
+        &_step {
           h3 {
-            color: $Primary500;
-            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 0 0 16px 0;
+            font-size: 1rem;
+            font-weight: 900;
+            font-family: PPEiko, sans-serif;
+          }
+
+          &_details {
+            border-radius: 8px;
+            background: $Gray100;
+            padding: 16px;
+            display: grid;
+            gap: 16px;
+            grid-template-columns: auto 1fr;
+
+            span {
+              font-size: 0.875rem;
+            }
+
+            span:nth-child(odd) {
+              color: $Gray400;
+            }
+
+            span:nth-child(even) {
+              text-align: right;
+            }
+          }
+
+          &--arrived {
+            h3 {
+              color: $Primary500;
+              margin: 0;
+            }
           }
         }
       }
+    }
+  }
+
+  &.desktop {
+    img {
+      max-width: $main-width;
+      margin: 0 auto;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .eventDetails__content {
+      max-width: calc(#{$main-width} + 48px);
+      flex-direction: row;
+      margin: 0 auto;
     }
   }
 }
