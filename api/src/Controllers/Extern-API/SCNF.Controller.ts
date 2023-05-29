@@ -25,7 +25,6 @@ class SNCF {
         this.getLocalCityToEventCity(local_city, event_city, this.headers, this.localAndEventCity).then(() => {
 
             let url = `https://api.sncf.com/v1/coverage/sncf/journeys/?from=${this.localAndEventCity[0].id}&to=${this.localAndEventCity[1].id}&datetime=${departure_date}`;
-            console.log(url);
 
             fetch(url, { headers: this.headers })
                 .then((response) => response.json())
@@ -50,7 +49,6 @@ class SNCF {
             if (response.ok) {
                 const data = await response.json();
                 const { places } = data;
-                console.log(places)
 
                 // Extract id and name from places and create idAdmin objects
                 const idAdminObjects = places.map((place: any) => {

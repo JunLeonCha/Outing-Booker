@@ -1,8 +1,8 @@
 import express from "express"
-import { make_reserveration } from "../../Controllers/Bookings/Booking.Controller"
+import Booking from "../../Controllers/Bookings/Booking.Controller"
 
 const router = express.Router()
 
-router.post("/make_reservation", make_reserveration)
+router.post("/make_reservation", Booking.make_reserveration)
 
 export default router

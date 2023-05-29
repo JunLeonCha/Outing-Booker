@@ -1,50 +1,67 @@
 import { Request, Response } from "express"
-import supabase from "../../db.js"
+import Supabase from "../../db"
 
 
-export const make_reserveration = async (req: Request, res: Response) => {
-    const event = { name: req.body.event_name, city: req.body.event_city, address: req.body.event_address, postal_code: req.body.postal_code }
-    const travel = [req.body.travelDeparture, req.body.travelArrived]
-    let lastInsertEventId: string;
-    let lastInsertTrainId: string;
+class BookingController {
+    private supabase = Supabase
 
-    const { data: eventInsertData, error: eventInsertError } = await supabase
-        .from("events")
-        .insert(event)
-        .select();
+    // test = async (req: Request, res: Response) => {
+    //     await this.supabase.supa().auth.getUser()
+    //     // const resultat = await this.supabase.supa().from("booking").select("*")
+    //     // return res.send(resultat.data)
+    // }
 
-    if (eventInsertData) {
-        lastInsertEventId = eventInsertData[0].id;
+    make_reserveration = async (req: Request, res: Response) => {
 
-        // Insérer les données dans la table "trains"
-        const trainData = { departure_at: req.body.travelDeparture, arrived_at: req.body.travelArrived };
-        const { data: trainInsertData, error: trainInsertError } = await supabase
-            .from("trains")
-            .insert(trainData)
+        const event = { name: req.body.event_name, city: req.body.event_city, address: req.body.event_address, postal_code: req.body.event_postal_code }
+        const travel = [req.body.departure_travel, req.body.arrived_travel]
+        let lastInsertEventId: string;
+        let lastInsertTrainId: string;
+
+        console.log(this.supabase.supa(req.body.access_token))
+
+        const { data: eventInsertData, error: eventInsertError } = await this.supabase.supa()
+            .from("events")
+            .insert(event)
             .select();
 
-        if (trainInsertData) {
-            lastInsertTrainId = trainInsertData[0].id;
+        console.log(eventInsertError?.message)
 
-            // Insérer les données dans la table "bookings"
-            const { data: bookingData, error: bookingError } = await supabase
-                .from("bookings")
-                .insert({ id_event: lastInsertEventId, id_train: lastInsertTrainId, id_user: req.body.id_user })
+        if (eventInsertData) {
+            lastInsertEventId = eventInsertData[0].id;
+
+            // Insérer les données dans la table "trains"
+            const trainData = { identifier: req.body.identifier, api_id: req.body.id_journey, departure_at: req.body.departure_travel, arrived_at: req.body.arrived_travel };
+            const { data: trainInsertData, error: trainInsertError } = await this.supabase.supa(req.body.access_token)
+                .from("trains")
+                .insert(trainData)
                 .select();
 
-            if (bookingData) {
-                console.log(bookingData);
-                return res.status(200).send("Votre réservation a été ajoutée.");
+            if (trainInsertData) {
+                lastInsertTrainId = trainInsertData[0].id;
+
+                // Insérer les données dans la table "bookings"
+                const { data: bookingData, error: bookingError } = await this.supabase.supa(req.body.access_token)
+                    .from("bookings")
+                    .insert({ id_event: lastInsertEventId, id_train: lastInsertTrainId, id_user: req.body.id_user })
+                    .select();
+
+                if (bookingData) {
+                    console.log("bookingData:\n" + bookingData);
+                    return res.status(200).send("Votre réservation a été ajoutée.");
+                } else {
+                    console.log("bookingError\n" + bookingError.message);
+                    return res.status(400).send(`Une erreur est survenue lors la reservation.\n ${bookingError}`);
+                }
             } else {
-                console.log(bookingError);
-                return res.status(400).send(`Une erreur est survenue lors la reservation.\n ${bookingError}`);
+                console.log("trainInsertError\n" + trainInsertError.message + "\n" + trainInsertError.code)
+                return res.status(400).send(`Une erreur est survenue lors de la reservation.\n ${trainInsertError}`);
             }
         } else {
-            console.log(trainInsertError);
-            return res.status(400).send(`Une erreur est survenue lors de la reservation.\n ${trainInsertError}`);
+            console.log("eventInsertError\n" + eventInsertError.message);
+            return res.status(400).send(`Une erreur est survenue lors de la reservation.\n ${eventInsertError}`);
         }
-    } else {
-        console.log(eventInsertError);
-        return res.status(400).send(`Une erreur est survenue lors de la reservation.\n ${eventInsertError}`);
     }
 }
+
+export default new BookingController;
