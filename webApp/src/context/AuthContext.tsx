@@ -30,10 +30,12 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const handleLogout = async () => {
-    setSession({});
-    sessionStorage.removeItem('session');
     await axios.post('/user/signOut').then(() => {
-      window.location.assign("/")
+      setTimeout(() => {
+        window.location.assign("/");
+        sessionStorage.removeItem('session');
+        sessionStorage.clear();
+      }, 300);
     })
   };
 

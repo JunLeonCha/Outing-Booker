@@ -31,9 +31,13 @@ const EventDetails = () => {
         departure_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.departure_date_time) : "",
         arrived_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.arrival_date_time) : "",
       }
-      axios.post("/booking/make_reservation", data).then(() => {
-        setMessageSuccess("La réservation a été enregistrée avec succès");
-      })
+      try {
+        axios.post("/booking/make_reservation", data).then(() => {
+          setMessageSuccess("La réservation a été enregistrée avec succès");
+        })
+      } catch (err: any) {
+        setMessageError(err)
+      }
     } else {
       setMessageError("Une erreur est survenue")
     }
@@ -66,7 +70,7 @@ const EventDetails = () => {
     }
   }, [eventResult, session])
 
-  console.log(journey)
+  console.log(session)
 
   return (
     <>
