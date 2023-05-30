@@ -34,12 +34,12 @@ class SNCF {
                 })
                 .catch((error) => {
                     return res.send(error);
-                    // Gérez les erreurs potentielles
+                    // return error
                 });
         })
     }
 
-    //Get Administration Id
+    //Get administration region by Id
     getLocalCityToEventCity = async (local_city: any, event_city: any, headersParams: any, arrayResponse: idAdmin[]) => {
         const fetchSNCFPlaces = async (query: any) => {
             const response = await fetch(`https://api.sncf.com/v1/coverage/sncf/places/?q=${query}`, {

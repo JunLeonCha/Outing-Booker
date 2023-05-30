@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/AuthContext";
 const Login = () => {
 
 	const [errorMessage, setErrorMessage] = useState(String);
-	// eslint-disable-next-line
 	const { handleLogin, session } = useContext(AuthContext)
 
 	type signUpFormValues = {
@@ -26,10 +25,13 @@ const Login = () => {
 		{ name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
 	];
 
+	if (session) {
+		window.location.assign("/")
+	}
+
 	return (
 		<div className="auth-login">
 			<h1>LOGO</h1>
-
 			<div className="auth-login__form">
 				<h1>Se connecter</h1>
 				<DynamicForm

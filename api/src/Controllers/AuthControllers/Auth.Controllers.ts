@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Supabase from "../../db";
 import { Connexion, Register } from "../../Models/Authentication/Authentication";
+import jwt from "jsonwebtoken"
 
 namespace Authentication {
     export class AuthenticationController {
@@ -27,15 +28,12 @@ namespace Authentication {
                 if (fetchError) {
                     return res.status(400).json({ error: fetchError.message });
                 }
-                const user_data = userData ? userData[0] : {}; // Utilisez la première entrée du tableau des données
-
-                // Enregistrer le cookie contenant le jeton d'accès
-                // res.cookie('access_token', access_token, { httpOnly: true });
-                res.cookie('access_token', access_token);
-
-                return res.json({ access_token, id, user_data });
+                const user_data = userData ? userData[0] : {};
+                const user = { userData }
+                var userToken = jwt.sign(user, "0ut1ngB00k3r", { algorithm: "HS256" })
+                res.cookie('access_token',  userToken );
+                return res.status(200).json(user)
             }
-
             if (error) {
                 return res.status(400).json({ error: error.message });
             }
@@ -44,10 +42,10 @@ namespace Authentication {
         // Logout
         SignOut = async (req: Request, res: Response) => {
             // Supprimer le cookie du jeton d'accès
-            res.clearCookie('access_token');
-            const logout = await this.supabase.supa().auth.signOut();
-            console.log(logout.error)
-            return res.json({ message: 'Déconnexion réussie' });
+            await this.supabase.supa().auth.signOut().then(() => {
+                res.clearCookie('access_token');
+                return res.json({ message: 'Déconnexion réussie' });
+            });
         }
 
         // Register

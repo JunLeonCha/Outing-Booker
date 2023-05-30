@@ -14,9 +14,6 @@ const PORT = 8080
 app.use(express.json());
 app.use(cookieParser())
 
-app.get("/", (req: Request, res: Response) => {
-    return res.send("Hello World")
-})
 app.use("/user/", Authentication)
 app.use("/extern-api/", TicketMasterRouter)
 app.use("/extern-api/", SNCF)

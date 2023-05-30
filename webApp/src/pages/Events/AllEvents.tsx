@@ -29,7 +29,6 @@ const EventResultView = () => {
                     <h2>{eventResult.name}</h2>
                     <div>Genre: {eventResult.classifications[0].segment.name}</div>
                     <img
-
                         src={eventResult.images[2].url}
                         style={{ width: 300, borderRadius: 8 }}
                         alt="event-image"

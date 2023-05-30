@@ -1,15 +1,10 @@
 import { Request, Response } from "express"
 import Supabase from "../../db"
+import jwt from "jsonwebtoken"
 
 
 class BookingController {
     private supabase = Supabase
-
-    // test = async (req: Request, res: Response) => {
-    //     await this.supabase.supa().auth.getUser()
-    //     // const resultat = await this.supabase.supa().from("booking").select("*")
-    //     // return res.send(resultat.data)
-    // }
 
     make_reserveration = async (req: Request, res: Response) => {
 
@@ -32,7 +27,7 @@ class BookingController {
 
             // Insérer les données dans la table "trains"
             const trainData = { identifier: req.body.identifier, api_id: req.body.id_journey, departure_at: req.body.departure_travel, arrived_at: req.body.arrived_travel };
-            const { data: trainInsertData, error: trainInsertError } = await this.supabase.supa(req.body.access_token)
+            const { data: trainInsertData, error: trainInsertError } = await this.supabase.supa()
                 .from("trains")
                 .insert(trainData)
                 .select();
@@ -41,7 +36,7 @@ class BookingController {
                 lastInsertTrainId = trainInsertData[0].id;
 
                 // Insérer les données dans la table "bookings"
-                const { data: bookingData, error: bookingError } = await this.supabase.supa(req.body.access_token)
+                const { data: bookingData, error: bookingError } = await this.supabase.supa()
                     .from("bookings")
                     .insert({ id_event: lastInsertEventId, id_train: lastInsertTrainId, id_user: req.body.id_user })
                     .select();
@@ -61,6 +56,18 @@ class BookingController {
             console.log("eventInsertError\n" + eventInsertError.message);
             return res.status(400).send(`Une erreur est survenue lors de la reservation.\n ${eventInsertError}`);
         }
+    }
+
+    get_users_list_reservations = async (req: Request, res: Response) => {
+        const user = req.body.id_user;
+
+        const { data, error } = await this.supabase.supa().from("bookings")
+            .select('id, events(name, start,address,city,postal_code), trains(identifier, lobby, departure_at, arrived_at)')
+            .eq('id_user', req.body.id_user)
+
+        console.log(data)
+        return res.status(200).json(data)
+
     }
 }
 
