@@ -98,10 +98,10 @@ const EventDetails = () => {
 						</div>
 					</div>
 					{messageSuccess && (
-						<span>{messageSuccess}</span>
+						<span className="message success">{messageSuccess}</span>
 					)}
 					{messageError && (
-						<span>{messageError}</span>
+						<span className="message error">{messageError}</span>
 					)}
 					<button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
 				</div>
