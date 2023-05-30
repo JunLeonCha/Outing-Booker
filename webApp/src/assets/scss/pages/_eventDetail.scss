@@ -82,6 +82,18 @@
       }
     }
 
+    .message {
+      padding: 24px;
+
+      &.success {
+        color: $Success500;
+      }
+
+      &.error {
+        color: $Destructive500;
+      }
+    }
+
     .steps {
       flex-basis: 50%;
       padding: 24px;
