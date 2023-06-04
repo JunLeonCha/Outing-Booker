@@ -1,17 +1,30 @@
 export class User {
-    firstname: string;
-    lastname: string;
-    email: string;
-    password: string;
-    phone?: number;
-    created_at?: Date;
 
-    constructor(firstname: string, lastname: string, email: string, password: string, phone?: number, created_at?: Date,) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-        this.created_at = created_at;
+    email?: string;
+    password?: string;
+    firstname?: string;
+    lastname?: string;
+    phone?: number;
+
+    constructor() {
+    }
+
+    static newUser(email: string, password: string, firstname?: string, lastname?: string, phone?: number): User {
+        const user: User = new User();
+        user.email = email;
+        user.password = password;
+        user.firstname = firstname;
+        user.lastname = lastname
+        user.phone = phone;
+
+        return user;
+    }
+
+    static getUser(email: string | "", password: string): User {
+        const user: User = new User();
+        user.email = email;
+        user.password = password;
+
+        return user;
     }
 }

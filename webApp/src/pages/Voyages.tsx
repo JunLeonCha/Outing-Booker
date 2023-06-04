@@ -12,7 +12,7 @@ const Voyages = () => {
 	useEffect(() => {
 		if (session) {
 			const list_bookings = async () => {
-				axios.post(`/booking/get_users_list_bookings/`, {
+				axios.post(process.env.REACT_APP_OUTING_BOOKER + `/booking/get_users_list_bookings/`, {
 					id_user: session.userData[0].id
 				}).then(response => {
 					setUserBookings(response.data);

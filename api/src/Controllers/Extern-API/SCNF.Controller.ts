@@ -1,4 +1,7 @@
 import { Request, Response } from "express";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 interface idAdmin {
     id: string;
@@ -13,7 +16,7 @@ class SNCF {
 
     private localAndEventCity: idAdmin[] = []
     headers = {
-        Authorization: 'Basic ' + btoa("927b3c6a-6f9b-45a1-bb6e-ad69d8a4ebd3" + ':' + "")
+        Authorization: 'Basic ' + process.env.API_KEY_SNCF
     };
 
     getDepartureArrived = async (req: Request, res: Response) => {

@@ -1,4 +1,5 @@
-import express, { Request, Response } from "express"
+import express from "express"
+import cors from "cors"
 import cookieParser from "cookie-parser"
 import dotenv from "dotenv"
 import TicketMasterRouter from "./Routers/Extern-API/Ticket-Master.Router"
@@ -9,8 +10,10 @@ import Booking from "./Routers/Bookings/Booking.Router"
 dotenv.config()
 
 const app = express()
+
 const PORT = 8080
 
+app.use(cors())
 app.use(express.json());
 app.use(cookieParser())
 

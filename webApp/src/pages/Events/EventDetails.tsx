@@ -74,7 +74,7 @@ const EventDetails = () => {
 
   return (
     <>
-      <img src={`${eventResult?.images[2].url}`} alt="" />
+      <img src={`${eventResult?.images[4].url}`} alt="" />
       <div className="eventDetails__content">
         <div className="left">
           <div className="details">

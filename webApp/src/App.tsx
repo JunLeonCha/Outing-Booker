@@ -16,7 +16,6 @@ function App() {
 	// const title = window.location.pathname.split('/')
 	const routes = [
 		{ path: "/", element: <Layout content={< Home />} title="Accueil" className="home" /> },
-		{ path: "/accueil", element: <Layout content={< Home />} title="Accueil" className="home" /> },
 		{ path: "/voyages", element: <Layout content={< Voyages />} title="Voyages" className="voyages" /> },
 		{ path: "/lieu", element: <Layout content={<Place />} title="Lieu" className="lieu" /> },
 		{

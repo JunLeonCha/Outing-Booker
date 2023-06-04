@@ -8,18 +8,23 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 	// const category = Object.keys(eventCategory).length;
+
 	const navigate = useNavigate()
 	const [homeEvents, setHomeEvents] = useState<EventResult[]>([])
+	const [searchEvents, setSearchEvents] = useState<string>("")
 	const [cardCount, setCardCount] = useState<number>(5)
 
 	const handleClickDetails = (id: string) => {
 		navigate(`/evenement/${id}`)
 	}
 
+	const handleSubmit = (e: any) => {
+		e.preventDefault()
+	}
 
 	useEffect(() => {
 		const getEvent = async () => {
-			const event = await axios.get("/extern-api/Ticket-Master/home-event")
+			const event = await axios.get(process.env.REACT_APP_OUTING_BOOKER + "/extern-api/Ticket-Master/home-event")
 			setHomeEvents(event.data)
 		}
 		getEvent()
@@ -40,9 +45,9 @@ const Home = () => {
 		<>
 			<div className="searchBar-content">
 				<h1>Trouver la prochaine étape de votre vie</h1>
-				<form className="searchBar">
+				<form className="searchBar" onSubmit={handleSubmit}>
 					<Search color="#475467" size="24" />
-					<input type="text" placeholder="Rechercher" aria-label="Barre de recherche pour les évenements" />
+					<input onChange={(e) => { setSearchEvents(e.target.value) }} type="text" placeholder="Rechercher" aria-label="Barre de recherche pour les évenements" />
 					<button>Rechercher</button>
 				</form>
 			</div>

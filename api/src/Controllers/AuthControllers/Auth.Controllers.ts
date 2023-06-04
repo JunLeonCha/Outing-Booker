@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
 import Supabase from "../../db";
-import { Connexion, Register } from "../../Models/Authentication/Authentication";
 import jwt from "jsonwebtoken"
+import { User } from "../../Models/UserModels/UserModel";
 
 namespace Authentication {
     export class AuthenticationController {
         private supabase = Supabase;
-        SignIn = async (req: Request, res: Response) => {
 
+        SignIn = async (req: Request, res: Response) => {
             const { email, password } = req.body;
-            const Login = new Connexion(email, password);
+            const Login = User.getUser(email, password);
             const { data, error } = await this.supabase.supa().auth.signInWithPassword({
-                email: Login.email,
-                password: Login.password,
+                email: Login.email ?? "",
+                password: Login.password ?? "",
             });
 
             if (data?.session?.user) {
@@ -31,7 +31,7 @@ namespace Authentication {
                 const user_data = userData ? userData[0] : {};
                 const user = { userData }
                 var userToken = jwt.sign(user, "0ut1ngB00k3r", { algorithm: "HS256" })
-                res.cookie('access_token',  userToken );
+                res.cookie('access_token', userToken);
                 return res.status(200).json(user)
             }
             if (error) {
@@ -51,10 +51,10 @@ namespace Authentication {
         // Register
         SignUp = async (req: Request, res: Response) => {
             const { firstname, lastname, email, password } = req.body;
-            const newRegister = new Register(firstname, lastname, email, password);
+            const newRegister = User.getUser(firstname, lastname);
             const { error } = await this.supabase.supa().auth.signUp({
-                email: newRegister.email,
-                password: newRegister.password,
+                email: newRegister.email ?? "",
+                password: newRegister.password ?? "",
                 options: {
                     data: {
                         firstname: newRegister.firstname,
