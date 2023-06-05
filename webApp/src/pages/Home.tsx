@@ -24,7 +24,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const getEvent = async () => {
-			const event = await axios.get(process.env.REACT_APP_OUTING_BOOKER + "/extern-api/Ticket-Master/home-event")
+			const event = await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/Ticket-Master/home-event`)
 			setHomeEvents(event.data)
 		}
 		getEvent()

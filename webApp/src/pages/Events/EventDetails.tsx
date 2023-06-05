@@ -47,7 +47,7 @@ const EventDetails = () => {
     let eventId = location.pathname.split("/")[2];
 
     const getEvent = async () => {
-      await axios.get(`/extern-api/Ticket-Master/events/${eventId}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/Ticket-Master/events/${eventId}`).then((res) => {
         setEventResult(res.data)
       })
     }

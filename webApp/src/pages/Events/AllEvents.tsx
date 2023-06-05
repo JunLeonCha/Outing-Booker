@@ -16,7 +16,7 @@ const EventResultView = () => {
 
     useEffect(() => {
         const allEvents = async () => {
-            const resultsEvent = await axios.get(process.env.REACT_APP_OUTING_BOOKER + "/extern-api/ticket-master/events/");
+            const resultsEvent = await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/ticket-master/events/`);
             setEventsResult(resultsEvent.data);
         }
         allEvents();
