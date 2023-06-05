@@ -21,7 +21,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   }, []);
 
   const handleLogin = async (values: object) => {
-    const res = await axios.post('/user/signIn', values);
+    const res = await axios.post(`${process.env.REACT_APP_OUTING_BOOKER}/user/signIn`, values);
     const data = res.data
     console.log(data);
     setSession(data);
@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const handleLogout = async () => {
-    await axios.post('/user/signOut').then(() => {
+    await axios.post(`${process.env.REACT_APP_OUTING_BOOKER}/user/signOut`).then(() => {
       setTimeout(() => {
         window.location.assign("/");
         sessionStorage.removeItem('session');

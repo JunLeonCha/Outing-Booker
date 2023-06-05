@@ -20,11 +20,18 @@ export class User {
         return user;
     }
 
-    static getUser(email: string | "", password: string): User {
+    static getUser(email: string, password: string): User {
         const user: User = new User();
         user.email = email;
         user.password = password;
 
         return user;
+    }
+
+    static getUserInfo(email?: string): User {
+        const user: User = new User();
+        user.email = email;
+
+        return user
     }
 }
