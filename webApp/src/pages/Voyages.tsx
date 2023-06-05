@@ -1,12 +1,13 @@
 import axios from "axios";
-import "../assets/scss/pages/_favoris.scss";
-import { useEffect, useState } from 'react';
-import { useAuth } from "../context/AuthContext";
-import { booking } from "../interfaces/booking";
+import "../assets/scss/pages/_voyages.scss";
+import {useEffect, useState} from 'react';
+import {useAuth} from "../context/AuthContext";
+import {booking} from "../interfaces/booking";
+import {NavLink} from "react-router-dom";
 
 
 const Voyages = () => {
-	const { session } = useAuth();
+	const {session} = useAuth();
 	const [userBookings, setUserBookings] = useState<booking[]>([])
 
 	useEffect(() => {
@@ -25,16 +26,22 @@ const Voyages = () => {
 	console.log(userBookings)
 	return (
 		<>
-			<div className="cards-row">
-				<h2>Évènements</h2>
-				<div className="cards-row__list">
-					{userBookings.map((booking: booking) => (
-						<div key={booking.id} className="cards-row__list_card">
-							<img src="/images/culture.png" alt="" />
-							<h3>{booking.events.name}</h3>
-						</div>
-					))}
-				</div>
+			<div className="top">
+				<div className="top__avatar"></div>
+				<span className="top__username">Username</span>
+			</div>
+			<nav className="left">
+				<NavLink to="/">Mes favoris</NavLink>
+				<NavLink to="/voyages">Mes voyages</NavLink>
+				<NavLink to="/compte">Mon compte</NavLink>
+			</nav>
+			<div className="right">
+				{userBookings.map((booking: booking) => (
+					<div key={booking.id} className="card">
+						<img src="/images/culture.png" alt=""/>
+						<h3>{booking.events.name}</h3>
+					</div>
+				))}
 			</div>
 		</>
 	);
