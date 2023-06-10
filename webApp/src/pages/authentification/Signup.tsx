@@ -1,10 +1,11 @@
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
 import axios from "axios";
-import { useState } from 'react';
+import React, {useState} from 'react';
 
 const Signup = () => {
 	const [errorSignUp, setErrorSignUp] = useState<string>();
+
 	interface signUpFormValues {
 		firstname: string,
 		lastname: string,
@@ -29,16 +30,16 @@ const Signup = () => {
 	}
 
 	const registerFields = [
-		{ name: "firstname", type: "text", placeholder: "John" },
-		{ name: "lastname", type: "text", placeholder: "Doe" },
-		{ name: "email", type: "email", placeholder: "toto@gmail.com" },
-		{ name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
-		{ name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx" },
+		{name: "firstname", type: "text", placeholder: "John"},
+		{name: "lastname", type: "text", placeholder: "Doe"},
+		{name: "email", type: "email", placeholder: "toto@gmail.com"},
+		{name: "password", type: "password", placeholder: "xxxxxxxxxxx"},
+		{name: "confirm_password", type: "password", placeholder: "xxxxxxxxxxx"},
 	];
 
 	return (
 		<div className="auth-register">
-			<h1>LOGO</h1>
+			<img className="logo" src="images/logo.png" alt="Logo d'Outing Booker"/>
 			{errorSignUp && <p className="auth-register__error">{errorSignUp}</p>}
 			<div className="auth-register__form">
 				<h1>S'inscrire</h1>

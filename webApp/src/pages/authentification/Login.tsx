@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import DynamicForm from "../../components/forms/DynamicForm";
 import "../../assets/scss/pages/_authentication.scss";
-import { AuthContext } from "../../context/AuthContext";
+import {AuthContext} from "../../context/AuthContext";
 
 const Login = () => {
 
 	const [errorMessage, setErrorMessage] = useState(String);
-	const { handleLogin, session } = useContext(AuthContext)
+	const {handleLogin, session} = useContext(AuthContext)
 
 	type signUpFormValues = {
 		email: string,
@@ -21,8 +21,8 @@ const Login = () => {
 		}
 	}
 	const connexionFields = [
-		{ name: "email", type: "email", placeholder: "toto@gmail.com" },
-		{ name: "password", type: "password", placeholder: "xxxxxxxxxxx" },
+		{name: "email", type: "email", placeholder: "toto@gmail.com"},
+		{name: "password", type: "password", placeholder: "xxxxxxxxxxx"},
 	];
 
 	if (session) {
@@ -31,7 +31,7 @@ const Login = () => {
 
 	return (
 		<div className="auth-login">
-			<h1>LOGO</h1>
+			<img className="logo" src="images/logo.png" alt="Logo d'Outing Booker"/>
 			<div className="auth-login__form">
 				<h1>Se connecter</h1>
 				<DynamicForm

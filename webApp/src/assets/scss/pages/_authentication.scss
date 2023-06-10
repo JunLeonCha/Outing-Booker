@@ -8,6 +8,10 @@
   padding: 24px;
   min-height: 100vh;
 
+  .logo {
+    width: min(100%, 160px);
+  }
+
   &__form {
     width: 100%;
     display: flex;
