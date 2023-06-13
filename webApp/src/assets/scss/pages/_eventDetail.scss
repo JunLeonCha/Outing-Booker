@@ -156,6 +156,28 @@
           }
         }
       }
+
+    }
+
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .connexion {
+      all: unset;
+      height: 48px;
+      background: $Primary500;
+      color: $White;
+      border-radius: 8px;
+      margin: 8px 24px;
+      text-align: center;
+      font-family: PPEiko, sans-serif;
+      font-size: 1.125rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
     }
   }
 

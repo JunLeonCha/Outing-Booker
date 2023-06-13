@@ -1,9 +1,8 @@
 import { sncfInterface } from "../interfaces/SNCF";
 import { EventResult } from "../interfaces/ticketMaster";
+import dayjs from 'dayjs';
 
 class GenericFunctions {
-
-
 
     getFormattedDateEvent(event: EventResult) {
         const date = new Date(event?.dates.start.dateTime);
@@ -19,6 +18,20 @@ class GenericFunctions {
         } else {
             return "Date inconnue";
         }
+    }
+
+    convertToISO8601(timestamp: string): string {
+        const timePart: string[] = timestamp.split(':');
+
+        const hour: number = parseInt(timePart[0], 10);
+        const minute: number = parseInt(timePart[1], 10);
+
+        const currentDate: dayjs.Dayjs = dayjs();
+        const isoDate: string = currentDate.format('YYYY-MM-DD');
+
+        const convertedTimestamp: string = `${isoDate}T${this.padZero(hour)}:${this.padZero(minute)}:00.000+00:00`;
+
+        return convertedTimestamp;
     }
 
     getFormattedJourneyInfo(journey: sncfInterface) {

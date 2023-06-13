@@ -11,7 +11,7 @@ const Home = () => {
 
 	const navigate = useNavigate()
 	const [homeEvents, setHomeEvents] = useState<EventResult[]>([])
-	const [searchEvents, setSearchEvents] = useState<string>("")
+	const [searchEvents, setSearchEvents] = useState<string>()
 	const [cardCount, setCardCount] = useState<number>(5)
 
 	const handleClickDetails = (id: string) => {
@@ -20,11 +20,12 @@ const Home = () => {
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault()
+		navigate(`/search/${searchEvents}`)
 	}
 
 	useEffect(() => {
 		const getEvent = async () => {
-			const event = await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/Ticket-Master/home-event`)
+			const event = await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/ticket-master/events/home`)
 			setHomeEvents(event.data)
 		}
 		getEvent()

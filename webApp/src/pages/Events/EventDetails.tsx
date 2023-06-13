@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../assets/scss/pages/_eventDetail.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { EventResult } from "../../interfaces/ticketMaster";
 import { useAuth } from "../../context/AuthContext";
@@ -11,8 +11,9 @@ const EventDetails = () => {
   const newFunctions = new EventFunctions()
   const { session } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [eventResult, setEventResult] = useState<EventResult>();
-  const [journey, setJourneysResults] = useState<sncfInterface>();
+  const [journey, setJourneys] = useState<sncfInterface>();
   const [messageError, setMessageError] = useState<string>();
   const [messageSuccess, setMessageSuccess] = useState<string>();
 
@@ -25,29 +26,31 @@ const EventDetails = () => {
         event_city: eventResult?._embedded.venues[0]?.city?.name,
         event_address: eventResult?._embedded.venues[0]?.address.line1,
         event_postal_code: eventResult?._embedded.venues[0]?.postalCode,
-        event_start: newFunctions.convertToTimestampz(eventResult ? eventResult?.dates.start.localTime : ""),
-        id_journey: journey?.journeys[0]?.sections[1].id,
+        event_start: newFunctions.convertToISO8601(eventResult ? eventResult?.dates.start.localTime : ""),
         identifier: journey?.journeys[0]?.sections[1].display_informations?.headsign,
         departure_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.departure_date_time) : "",
         arrived_travel: journey ? newFunctions.convertToTimestampz(journey?.journeys[0]?.arrival_date_time) : "",
       }
       try {
-        axios.post("/booking/make_reservation", data).then(() => {
+        axios.post(`${process.env.REACT_APP_OUTING_BOOKER}/booking/make_reservation`, data).then(() => {
           setMessageSuccess("La réservation a été enregistrée avec succès");
         })
       } catch (err: any) {
-        setMessageError(err)
+        setMessageError("Une erreur est survenue")
       }
     } else {
-      setMessageError("Une erreur est survenue")
+      navigate("/connexion")
     }
+  }
+  const redirectLogin = () => {
+    navigate('/connexion')
   }
 
   useEffect(() => {
     let eventId = location.pathname.split("/")[2];
 
     const getEvent = async () => {
-      await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/Ticket-Master/events/${eventId}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/ticket-master/events/${eventId}`).then((res) => {
         setEventResult(res.data)
       })
     }
@@ -60,21 +63,18 @@ const EventDetails = () => {
   useEffect(() => {
     if (eventResult && session) {
       const getTrain = async () => {
-        axios.get(`/extern-api/sncf/base_departure_arrived?local_city=${session.userData[0].postal_code}&event_city=${eventResult?._embedded.venues[0]?.postalCode}&departure_date=${eventResult?.dates.start.localDate}`).then((res) => {
-          setJourneysResults(res.data)
+        axios.get(`${process.env.REACT_APP_OUTING_BOOKER}/extern-api/sncf/base_departure_arrived?local_city=${session.userData[0].postal_code}&event_city=${eventResult?._embedded.venues[0]?.postalCode}&departure_date=${eventResult?.dates.start.localDate}`).then((res) => {
+          setJourneys(res.data)
         })
       }
       getTrain()
     } else {
-      setJourneysResults(undefined)
+      setJourneys(undefined)
     }
   }, [eventResult, session])
-
-  console.log(session)
-
   return (
     <>
-      <img src={`${eventResult?.images[4].url}`} alt="" />
+      <img src={`${eventResult?.images[2].url}`} alt="" />
       <div className="eventDetails__content">
         <div className="left">
           <div className="details">
@@ -104,7 +104,7 @@ const EventDetails = () => {
           )}
           <button type="button" className="book" onClick={handleSubmitBooking}>Réserver</button>
         </div>
-        {journey && !journey.error && journey.journeys && (
+        {journey && !journey.error && journey.journeys ? (
           <div className="steps">
             <h2>{journey ? newFunctions.messageStepFromLocalCity(session.userData[0].city) : " "}</h2>
             <div className="steps__list">
@@ -122,23 +122,15 @@ const EventDetails = () => {
                   <span>{journey?.journeys[0].sections[1].from.name}</span>
                   <span>Arrivé</span>
                   <span>{journey?.journeys[0].sections[1].to.name}</span>
-                  <span>Trajet</span>
-                  <span>{newFunctions.formatHoursFromSeconds(journey.journeys[0].duration)}</span>
                 </div>
-                {journey && journey.error ? (
-                  <div className="steps__list_step steps__list_step--arrived">
-                    <h3>
-                      <span>23:02</span>
-                      <span>Arrivé à destination</span>
-                    </h3>
-                  </div>
-                ) : (
-                  ""
-                )}
               </div>
             </div>
           </div>
-        )}
+        ) :
+          <div className="right">
+            <p>Connectez-vous pour apercevoir les propositions de voyages</p>
+            <button className="connexion" onClick={redirectLogin}>ICI</button>
+          </div>}
       </div>
     </>
   );

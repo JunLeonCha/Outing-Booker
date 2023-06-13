@@ -1,12 +1,14 @@
 import { Response, Request } from "express"
+import dotenv from "dotenv"
 
+dotenv.config()
 
 class TkMaster {
 
     constructor() { }
 
     getEventForHome = async (req: Request, res: Response) => {
-        const result = await fetch("https://app.ticketmaster.com/discovery/v2/events?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&locale=*&size=5&sort=random&countryCode=FR")
+        const result = await fetch(`https://app.ticketmaster.com/discovery/v2/events?apikey=${process.env.API_KEY_TICKET_MASTER}&locale=*&size=5&sort=random&countryCode=FR`)
             .then(res => res.json())
             .then(data => data._embedded.events)
 
@@ -50,6 +52,13 @@ class TkMaster {
 
         return res.status(200).json(result)
     }
+
+    getEventByQuery = async (req: Request, res: Response) => {
+        const result = await fetch(`https://app.ticketmaster.com/discovery/v2/events?apikey=amgb44GRYhk0uZO7vShHRhsLeWGMNHkp&keyword=${req.params.id}&locale=*&countryCode=FR`)
+            .then(res => res.json())
+            .then(data => data._embedded.events)
+        return res.status(200).json(result);
+    }
 }
 
-export default TkMaster
+export default new TkMaster

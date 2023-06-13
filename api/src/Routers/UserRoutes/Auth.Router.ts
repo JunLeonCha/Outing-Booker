@@ -2,9 +2,9 @@ import express from "express"
 import Authentication from "../../Controllers/AuthControllers/Auth.Controllers";
 
 const router = express.Router();
-
-router.post("/signUp", Authentication.SignUp)
-router.post("/signIn", Authentication.SignIn)
-router.post("/signOut", Authentication.SignOut)
+const newAuth = new Authentication
+router.post("/signUp", newAuth.SignUp)
+router.post("/signIn", newAuth.SignIn)
+router.post("/signOut", newAuth.SignOut)
 
 export default router;

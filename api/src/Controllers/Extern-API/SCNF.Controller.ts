@@ -13,11 +13,9 @@ class SNCF {
     constructor() {
         //
     }
-
-    private localAndEventCity: idAdmin[] = []
     headers = {
-        Authorization: 'Basic ' + process.env.API_KEY_SNCF
-    };
+        Authorization: 'Basic ' + btoa("927b3c6a-6f9b-45a1-bb6e-ad69d8a4ebd3" + ':' + "")
+    }
 
     getDepartureArrived = async (req: Request, res: Response) => {
         let local_city = req.query.local_city
@@ -25,9 +23,10 @@ class SNCF {
         let departure_date = req.query.departure_date
 
 
-        this.getLocalCityToEventCity(local_city, event_city, this.headers, this.localAndEventCity).then(() => {
-
-            let url = `https://api.sncf.com/v1/coverage/sncf/journeys/?from=${this.localAndEventCity[0].id}&to=${this.localAndEventCity[1].id}&datetime=${departure_date}`;
+        this.getLocalCityToEventCity(local_city, event_city, this.headers).then((resultat_administration_id: any) => {
+            let localAndEventCity: any;
+            localAndEventCity = (resultat_administration_id)
+            let url = `https://api.sncf.com/v1/coverage/sncf/journeys/?from=${localAndEventCity[0][0].id}&to=${localAndEventCity[1][0].id}&datetime=${departure_date}`;
 
             fetch(url, { headers: this.headers })
                 .then((response) => response.json())
@@ -43,7 +42,7 @@ class SNCF {
     }
 
     //Get administration region by Id
-    getLocalCityToEventCity = async (local_city: any, event_city: any, headersParams: any, arrayResponse: idAdmin[]) => {
+    getLocalCityToEventCity = async (local_city: any, event_city: any, headersParams: any) => {
         const fetchSNCFPlaces = async (query: any) => {
             const response = await fetch(`https://api.sncf.com/v1/coverage/sncf/places/?q=${query}`, {
                 headers: headersParams,
@@ -70,7 +69,8 @@ class SNCF {
         const id_local_city = await fetchSNCFPlaces(local_city);
         const id_event_city = await fetchSNCFPlaces(event_city);
 
-        arrayResponse.push(...id_local_city, ...id_event_city);
+        return [id_local_city, id_event_city]
+        // arrayResponse.push(...id_local_city, ...id_event_city);
     }
 }
 
